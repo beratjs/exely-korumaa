@@ -11,7 +11,7 @@ exports.run = async(client, message, args) => {
    
   if (args [0] == 'aç') {
     db.set(`reklamengel_${message.guild.id}`, 'açık')
-    let lu = await db.fetch(`reklamengel_${message.guild.id}`)
+    let lus = await db.fetch(`reklamengel_${message.guild.id}`)
     
     const reklamengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')

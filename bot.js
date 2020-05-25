@@ -160,8 +160,8 @@ client.login(ayarlar.token);
 //küfür-engel
 client.on("message", async msg => {
   
-  const lu = await db.fetch(`küfürengel_${msg.guild.id}`)
-  if (lu) {
+  const lus = await db.fetch(`küfürengel_${msg.guild.id}`)
+  if (lus) {
     const kufurengel = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
     if (kufurengel.some(word => msg.concent.includes(word))) {
       try {
@@ -176,5 +176,26 @@ client.on("message", async msg => {
     }
   }
 }
-if (!lu) return;
+if (!lus) return;
+});
+//reklam
+client.on("message", async msg => {
+  
+  const lus = await db.fetch(`küfürengel_${msg.guild.id}`)
+  if (lus) {
+    const kufurengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
+    if (kufurengel.some(word => msg.concent.includes(word))) {
+      try {
+        if (!msg.member.permissions.has('KICK_MEMBERS')) {
+          msg.delete();
+          
+          return msg.reply('Hey Dur! Bu Sunucuda Reklamı Engelliyorum').then(msg => msg.delete(3000));
+          
+        }
+      } catch(err) {
+        console.log(err);
+    }
+  }
+}
+if (!lus) return;
 });
