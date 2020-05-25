@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
 
-module.exports.run = async(client, message,args) => {
+module.exports.run = async(bot, message,args) => {
    
    if (!message.member.permissions.has('MANAGE_ROLES')) {
     const izinyok2 = new Discord.MessageEmbed()
@@ -16,20 +16,36 @@ module.exports.run = async(client, message,args) => {
   let kanal = message.mentions.channels.first();
   
   if (!role) {
-    const rolyok = new Discord.MessageEmbed()
+    return message.channel.send(
+    new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription('Rol Belirtmen Lazım')
-    return message.channel.send(rolyok)
+   );
   }
    
   if (!kanal) {
-    const rolyok = new Discord.MessageEmbed()
+    return message.channel.send(
+     new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription('Kanal Belirtmen Lazım')
-    return message.channel.send(rolyok)
+    );
   }
   const otorol = new Discord.MessageEmbed()
     .setTitle('Başarılı')
-    .setDescription('Otorol Ayarlandı! \n ')
+    .setDescription('Otorol Ayarlandı! \n Yeni Gelen Kullanıcılara `${role}`ünü Vericeğim!')
     return message.channel.send(otorol)
-  }
+  
+  db.set(`otokanal_${message.guild.id}`, kanal.id);
+  db.set(`otorol_${message.guild.id}`, role.id);
+  
+  };
+module.exports.conf = {
+ enabled: true,
+ guildOnly: false,
+  aliases: ['oto-rol2'],
+ permLevel: 0
+};
+
+module.exports.help = {
+ name: 'otorol2'
+};
