@@ -6,7 +6,11 @@ exports.run = async(client, message, args) => {
   
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
 
-  if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send(`**Hey Sen** Evet Sen! Bu Komut İçin Yeterli Yetkin Yok!`)
+  if (!message.member.permissions.has('KICK_MEMBERS')) {
+    const izinyok = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription('Bu Komut İç')
+  }
   if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}küfür-engel aç/kapat`)
    
   if (args [0] == 'aç') {
