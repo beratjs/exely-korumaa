@@ -1,51 +1,47 @@
 const Discord = require('discord.js');
 const db = require('quick.db');
+const ayarlar = require('../ayarlar.json');
 
-module.exports.run = async(bot, message,args) => {
-   
-   if (!message.member.permissions.has('MANAGE_ROLES')) {
-    const izinyok2 = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Bu Komut İçin Yetkin Yok!')
-    return message.channel.send(izinyok2)
-  }
+exports.run = async(client, message, args) => {
   
-  let role =
-  message.mentions.roles.first() ||
-  message.guild.roles.find(rol => rol.name === args[0]);
-  let kanal = message.mentions.channels.first();
-  
-  if (!role) {
-    return message.channel.send(
-    new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Rol Belirtmen Lazım')
-   );
-  }
+  let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
+
+  if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send(`**Hey Sen** Evet Sen! Bu Komut İçin Yeterli Yetkin Yok!`)
+  if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
    
-  if (!kanal) {
-    return message.channel.send(
-     new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Kanal Belirtmen Lazım')
-    );
-  }
-  const otorol = new Discord.MessageEmbed()
+  if (args [0] == 'aç') {
+   db.set(`otokanal_${message.guild.id}`, kanal.id);
+   db.set(`otorol_${message.guild.id}`, role.id);
+    let otorolcu = await db.fetch(`reklamengel_${message.guild.id}`)
+    
+    const reklamengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
-    .setDescription('Otorol Ayarlandı! \n Yeni Gelen Kullanıcılara `${role}`ünü Vericeğim!')
-    return message.channel.send(otorol)
+    .setDescription('**Reklam Engeli Açtım**')
+    return message.channel.send(reklamengelcim)
+
+  }
   
-  db.set(`otokanal_${message.guild.id}`, kanal.id);
-  db.set(`otorol_${message.guild.id}`, role.id);
+  if (args [0] == 'kapat') {
+      
+db.delete(`otokanal_${message.guild.id}`, kanal.id);
+  db.delete(`otorol_${message.guild.id}`, role.id);
+   const küfürengelcim22 = new Discord.MessageEmbed()
+    .setTitle('Başarılı')
+    .setDescription('**Reklam Engeli Kapattım**')
+    return message.channel.send(küfürengelcim22)
+  }
+
   
-  };
-module.exports.conf = {
+  
+  
+};
+exports.conf = {
  enabled: true,
  guildOnly: false,
-  aliases: ['oto-rol2'],
+  aliases: ['reklam-engel'],
  permLevel: 0
 };
 
-module.exports.help = {
- name: 'otorol2'
+exports.help = {
+ name: 'reklam-engelle'
 };
