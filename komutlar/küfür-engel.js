@@ -9,7 +9,8 @@ exports.run = async(client, message, args) => {
   if (!message.member.permissions.has('KICK_MEMBERS')) {
     const izinyok = new Discord.MessageEmbed()
     .setTitle('Başarısız')
-    .setDescription('Bu Komut İç')
+    .setDescription('Bu Komut İçin Yetkin Yok!')
+    return message.channel.send(izinyok)
   }
   if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}küfür-engel aç/kapat`)
    
