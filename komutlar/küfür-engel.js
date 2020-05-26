@@ -13,8 +13,13 @@ exports.run = async(client, message, args) => {
     .setDescription('Bu Komut İçin Yetkin Yok!')
     return message.channel.send(izinyok)
   }
-  if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}küfür-engel aç/kapat`)
-   
+  if (!args[0])  {
+    const küfürcuk = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription(`Bunumu Arıyorsun? \n ${prefix}küfür-engel aç/kapat`)
+      return message.channel.send(küfürcuk)
+
+  }
   if (args [0] == 'aç') {
     db.set(`küfürengel_${message.guild.id}`, 'açık')
     let lu = await db.fetch(`küfürengel_${message.guild.id}`)
