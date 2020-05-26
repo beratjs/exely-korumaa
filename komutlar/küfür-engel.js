@@ -5,6 +5,7 @@ const ayarlar = require('../ayarlar.json');
 exports.run = async(client, message, args) => {
   
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
+  
 
   if (!message.member.permissions.has('KICK_MEMBERS')) {
     const izinyok = new Discord.MessageEmbed()
@@ -26,13 +27,14 @@ exports.run = async(client, message, args) => {
   }
   
   if (args [0] == 'kapat') {
-      
+    
     db.delete(`küfürengel_${message.guild.id}`)
 
    const küfürengelcim2 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Küfür Engeli Kapattım')
     return message.channel.send(küfürengelcim2)
+   
   }
 
   

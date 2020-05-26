@@ -93,8 +93,7 @@ module.exports = message => {
     if (perms < cmd.conf.permLevel) return;
     cmd.run(client, message, params, perms);
   }
-};
-
+}; 
 
 
 /*/
@@ -119,7 +118,7 @@ module.exports = async message => {
   if (cmd) {
     if (onlycode)
       return message.channel.send(
-        `**<a:bakm:706502971537752134> Bakımdayız. \n<a:685083475509772337:699974316326125628> Size Daha İyi Hizmet Vermek İçin Çalışıyoruz. \n<a:692838217396912193:706506191093628940>Yakında Daha Gelişmiş Komutlarla Karşınızdayız**`
+        `<a:701526234211024968:712311090842959873> **Bakımdayız! Anlayışınız İçin Teşekkür Ederiz!** \n<a:unlem:708790356430553158> **En Yakın Zamanda Kodlarımızı Tekrar Sunacağız.\nBakımlardan Haber Alabilmek İçin Destek Sunucumuza Gelebilirsiniz. https://discord.gg/kY5x7Vd**`
       );
     if (perms < cmd.conf.permLevel) return;
     cmd.run(client, message, params, perms);
@@ -128,4 +127,3 @@ module.exports = async message => {
 /*/
 // Yukarıyı Silince Bakım Oluyo Ekleyince Bakımdan Çıkı 
 // TAMAM ANLADIM REİS EYW SAĞOL BURASI KALSIN BEN BURDAN BAKIM NASIL YAPACAĞIMA ANLARIM
-//Hellloooooo
