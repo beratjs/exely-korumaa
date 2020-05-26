@@ -199,3 +199,21 @@ client.on("message", async msg => {
 }
 if (!lus) return;
 });
+//otorol
+client.on("guildMemberAdd", async member => {
+let frenzy_ibrahim = await db.fetch(`Frenzy?Code?OtorolRol_${member.guild.id}`) 
+let frenzykanal = await db.fetch(`Frenzy?Code?OtorolKanal_${member.guild.id}`)
+if(!frenzy_ibrahim || !frenzykanal) return
+member.addRole(frenzy_ibrahim)
+client.channels.get(frenzykanal).send(`${member}'a Başarıyla Rolü Verildi! <a:4568676767:700003210747838525>`)
+});
+//ototag
+	client.on("guildMemberAdd", async member => {
+let frenzy_ibrahim = await db.fetch(`Frenzy?Code?Ototag_${member.guild.id}`) 
+let frenzykanal = await db.fetch(`Frenzy?Code?OtotagKanal_${member.guild.id}`)
+if(!frenzy_ibrahim || !frenzykanal) return
+ 
+ member.setNickname(`${frenzy_ibrahim} ${member.user.username}`) 
+client.channels.get(frenzykanal).send(`${member}'a Başarıyla Tagı Verildi!`)
+ 
+});
