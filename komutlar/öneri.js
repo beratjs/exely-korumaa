@@ -16,21 +16,20 @@ exports.run = function(client, message, args) {
 
     if (!öneri){
 
-        return message.reply("**<a:hayrbe:707495526114787328> Bir Mesaj Belirtin!**");
+        return message.reply("**Bir Mesaj Belirtin!**");
 
     } else {
 
         
 
-        var embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
 
-            .setTimestamp()
 
             .addField("Eylem:", "Öneri")
 
-            .addField("Kullanıcı:", message.author.tag)
+            .addField("Kullanıcı:", )
 
-            .addField("ID", message.author.id)
+            .addField("ID", )
 
             .addField("Öneri", öneri)
 
@@ -38,7 +37,7 @@ exports.run = function(client, message, args) {
 
         client.guilds.get(guildID).channels.get(channelID).send(embed);
 
-        message.channel.send("<a:2198_blob_happy:708762979323215973> Önerinizi Başarıyla Sahiplerime Gönderdim Teşekkür Ederiz!");
+        message.channel.send(" Önerinizi Başarıyla Sahiplerime Gönderdim Teşekkür Ederiz!");
 
     };
 
