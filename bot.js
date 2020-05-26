@@ -217,3 +217,13 @@ if(!frenzy_ibrahim || !frenzykanal) return
 client.channels.get(frenzykanal).send(`${member}'a Başarıyla Tagı Verildi!`)
  
 });
+//sa-as
+client.on("message", async msg => {
+  let saas = await db.fetch(`saas_${msg.guild.id}`);
+  if (saas == 'kapali') return;
+  if (saas == 'acik') {
+  if (msg.content.toLowerCase() === 'sa') {
+    msg.reply('Aleyküm Selam Hoşgeldin');
+  }
+  }
+});
