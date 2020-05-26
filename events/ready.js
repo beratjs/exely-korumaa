@@ -10,7 +10,7 @@ module.exports = client => {
   console.log(`Komutlar Hazır!`);
   console.log(`Far | Light`);
   client.user.setStatus("idle");
-  client.user.setActivity("🔥Bakım Molası", { type: "WATCHING" });
+  client.user.setActivity("Rays V12 Denemesi", { type: "WATCHING" });
   
 
   
