@@ -10,14 +10,14 @@ exports.run = async(client, message, args) => {
   if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
    
   if (args [0] == 'aç') {
-    db.set(`reklamengel_${message.guild.id}`, 'açık')
-    let lus = await db.fetch(`reklamengel_${message.guild.id}`)
+    
+    let i = await db.fetch(`reklamengel_${message.guild.id}`)
     
     const reklamengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('**Reklam Engeli Açtım**')
     return message.channel.send(reklamengelcim)
-
+   db.set(`reklamengel_${message.guild.id}`, 'açık')
   }
   
   if (args [0] == 'kapat') {

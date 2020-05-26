@@ -16,7 +16,7 @@ exports.run = async(client, message, args) => {
    
   if (args [0] == 'aç') {
     db.set(`küfürengel_${message.guild.id}`, 'açık')
-    let lu = await db.fetch(`küfürengel_${message.guild.id}`)
+    let i = await db.fetch(`küfürengel_${message.guild.id}`)
     
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')

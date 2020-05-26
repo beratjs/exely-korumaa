@@ -160,8 +160,8 @@ client.login(ayarlar.token);
 //küfür-engel
 client.on("message", async msg => {
   
-  const lus = await db.fetch(`küfürengel_${msg.guild.id}`)
-  if (lus) {
+  const i = await db.fetch(`küfürengel_${msg.guild.id}`)
+  if (i) {
     const kufurengel = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
     if (kufurengel.some(word => msg.concent.includes(word))) {
       try {
@@ -176,20 +176,20 @@ client.on("message", async msg => {
     }
   }
 }
-if (!lus) return;
+if (!i) return;
 });
 //reklam
-client.on("message", async msg => {
+client.on("message", async message => {
   
-  const lus = await db.fetch(`reklamengel_${msg.guild.id}`)
-  if (lus) {
+  const i = await db.fetch(`reklamengel_${message.guild.id}`)
+  if (i) {
     const reklamengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
-    if (reklamengel.some(word => msg.concent.includes(word))) {
+    if (reklamengel.some(word =>  message.concent.includes(word))) {
       try {
-        if (!msg.member.permissions.has('KICK_MEMBERS')) {
-          msg.delete();
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+           message.delete();
           
-          return msg.reply('Hey Dur! Bu Sunucuda Reklamı Engelliyorum').then(msg => msg.delete(3000));
+          return message.reply('Hey Dur! Bu Sunucuda Reklamı Engelliyorum').then( message => message.delete(3000));
           
         }
       } catch(err) {
@@ -197,5 +197,5 @@ client.on("message", async msg => {
     }
   }
 }
-if (!lus) return;
+if (!i) return;
 });
