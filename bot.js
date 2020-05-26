@@ -163,7 +163,7 @@ client.on("message", async msg => {
   const lus = await db.fetch(`küfürengel_${msg.guild.id}`)
   if (lus) {
     const kufurengel = ["oç", "amk", "ananı sikiyim", "ananıskm", "piç", "amk", "amsk", "sikim", "sikiyim", "orospu çocuğu", "piç kurusu", "kahpe", "orospu", "mal", "sik", "yarrak", "am", "amcık", "amık", "yarram", "sikimi ye", "mk", "mq", "aq", "ak", "amq",];
-    if (kufurengel.some(word => msg.concent.includes(word))) {
+    if (kufurengel.some(word => msg.content.toLowerCase().includes(word))) {
       try {
         if (!msg.member.permissions.has('KICK_MEMBERS')) {
           msg.delete();
@@ -184,7 +184,7 @@ client.on("message", async msg => {
   const lus = await db.fetch(`reklamengel_${msg.guild.id}`)
   if (lus) {
     const reklamengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
-    if (reklamengel.some(word => msg.concent.includes(word))) {
+    if (reklamengel.some(word => msg.content.toLowerCase().includes(word))) {
       try {
         if (!msg.member.permissions.has('KICK_MEMBERS')) {
           msg.delete();
