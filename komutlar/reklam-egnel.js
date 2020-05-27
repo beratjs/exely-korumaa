@@ -11,7 +11,7 @@ if (!args[0])  {
     const küfürcu0k = new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription(`Bunumu Arıyorsun? \n ${prefix}küfür-engel aç/kapat`)
-      return message.channel.send(küfürcuk0)
+      return message.channel.send(küfürcu0k)
 
   }   
   if (args [0] == 'aç') {
