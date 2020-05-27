@@ -230,13 +230,13 @@ client.on("message", async msg => {
 //hgbb
 client.on('guildMemberAdd', async member => {
   let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
-  let lukanal2 = client.channels.get(lukanal)
-  if(!lukanal2) return
- lukanal2.send(` Uuuu Sunucuya Yeni Üye! Karşınızda ${member} Sunucuya Katıldı!`)
+  let luchannel = client.channels.get(lukanal)
+  if(!luchannel) return
+luchannel.send(` Uuuu Sunucuya Yeni Üye! Karşınızda ${member} Sunucuya Katıldı!`)
 })
 client.on('guildMemberRemove', async member => {
   let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
-  let lukanal2 = client.channels.get(lukanal)
-  if(!lukanal2) return
-  lukanal2.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
+  let luchannel = client.channels.get(lukanal)
+  if(!luchannel) return
+  luchannel.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
 })
