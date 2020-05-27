@@ -7,8 +7,13 @@ exports.run = async(client, message, args) => {
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
 
   if (!message.member.permissions.has('KICK_MEMBERS')) return message.channel.send(`**Hey Sen** Evet Sen! Bu Komut İçin Yeterli Yetkin Yok!`)
-  if (!args[0]) return message.channel.send(`Bunumu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
-   
+if (!args[0])  {
+    const küfürcu0k = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription(`Bunumu Arıyorsun? \n ${prefix}küfür-engel aç/kapat`)
+      return message.channel.send(küfürcuk0)
+
+  }   
   if (args [0] == 'aç') {
     db.set(`reklamengel_${message.guild.id}`, 'açık')
     let lus = await db.fetch(`reklamengel_${message.guild.id}`)
