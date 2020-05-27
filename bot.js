@@ -229,14 +229,14 @@ client.on("message", async msg => {
 });
 //hgbb
 client.on('guildMemberAdd', async member => {
-  let fc = await db.fetch(`FrenzyResimsizHGBB_${member.guild.id}`)
-  let frenzychannel = client.channels.get(fc)
-  if(!frenzychannel) return
-  frenzychannel.send(`<a:blobjoining:704778337767129104> Uuuu Sunucuya Yeni Üye! Karşınızda ${member} Sunucuya Katıldı!`)
+  let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
+  let luchannel = client.channels.get(lukanal)
+  if(!luchannel) return
+luchannel.send(` Uuuu Sunucuya Yeni Üye! Karşınızda ${member} Sunucuya Katıldı!`)
 })
 client.on('guildMemberRemove', async member => {
-  let fc = await db.fetch(`FrenzyResimsizHGBB_${member.guild.id}`)
-  let frenzychannel = client.channels.get(fc)
-  if(!frenzychannel) return
-  frenzychannel.send(`<a:ablobleaving:704778290556305511> Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
+  let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
+  let luchannel = client.channels.get(lukanal)
+  if(!luchannel) return
+  luchannel.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
 })
