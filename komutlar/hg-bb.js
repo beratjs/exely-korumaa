@@ -1,64 +1,43 @@
-const Discord = require('discord.js');
-const db = require('quick.db');
-const ayarlar = require('../ayarlar.json');
+const Discord = require('discord.js'),
+db = require('quick.db')
+const ayarlar = require('../ayarlar.json')
+module.exports.run = async (client, message, args) => {
+ 
+let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
 
-exports.run = async(client, message, args) => {
-  
-  let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
-  let lukanal= message.mentions.channels.first()
+let channelfc= message.mentions.channels.first()
+if (!args[0])  {
+    const küfürcu0k = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription(`Kanal Belirtmen Lazım!`)
+      return message.channel.send(küfürcu0k)
 
-  if (!message.member.permissions.has('KICK_MEMBERS')) {
-    const izinyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Bu Komut İçin Yetkin Yok!')
-    return message.channel.send(izinyok)
-  }
-  if (!args[0])  {
-    const küfürcuk32 = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription(`Bunumu Arıyorsun? \n ${prefix}hg-bb aç/kapat`)
-      return message.channel.send(küfürcuk32)
+  }   
+if (!message.member.hasPermission("BAN_MEMBERS")) {
+    const embed = new Discord.RichEmbed()
+      .setDescription(`**Bu Komutu Kullanmak İçin \`Üyeleri At\` Yetkisine Sahip Olmalısın**`)
+      .setColor("BLACK");
 
+    message.channel.send(embed);
+    return;
   }
-  if (!lukanal) {
-    const hgbb = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription(`Kanal Belitmen Lazım`)
-      return message.channel.send(hgbb)
-  }
-  if (args [0] == 'aç') {
-    db.set(`hgbb_${message.guild.id}`,lukanal.id)
-    let lu = await db.fetch(`hgbb_${message.guild.id}`,lukanal.id)
-    
-    const küfürengelcim6 = new Discord.MessageEmbed()
+if(!channelfc) return message.reply('**<a:hayrbe:707495526114787328>Lütfen Bir Kanal Etiketleyiniz!**')
+db.set(`FrenzyResimsizHGBB_${message.guild.id}`,channelfc.id)
+ const küfürengelcim23 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
-    .setDescription('Hg-bbyi Açtım')
-    return message.channel.send(küfürengelcim6)
+    .setDescription('Karşılama Sistemini  Açtım')
+    return message.channel.send(küfürengelcim23)
 
-  }
-  
-  if (args [0] == 'kapat') {
-    
-    db.delete(`hgbb_${message.guild.id}`,lukanal.id)
-
-   const küfürengelcim21 = new Discord.MessageEmbed()
-    .setTitle('Başarılı')
-    .setDescription('Hg-bbyi Kapattım')
-    return message.channel.send(küfürengelcim21)
-   
-  }
-
-  
-  
-  
-};
+}
 exports.conf = {
- enabled: true,
- guildOnly: false,
-  aliases: ['hg-bb'],
- permLevel: 0
+  enabled: true,
+  guildOnly: false,
+  aliases: [],
+  permLevel: 0
 };
 
 exports.help = {
- name: 'hgbb'
+  name: 'hg-bb-aç',
+  description: 'Frenzy Code',
+  usage: 'Frenzy Code'
 };
