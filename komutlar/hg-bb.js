@@ -20,6 +20,12 @@ exports.run = async(client, message, args) => {
       return message.channel.send(küfürcuk32)
 
   }
+  if (!lukanal) {
+    const hgbb = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription(`Kanal Belitmen Lazım`)
+      return message.channel.send(hgbb)
+  }
   if (args [0] == 'aç') {
     db.set(`hgbb_${message.guild.id}`,lukanal.id)
     let lu = await db.fetch(`hgbb_${message.guild.id}`,lukanal.id)
@@ -49,10 +55,10 @@ exports.run = async(client, message, args) => {
 exports.conf = {
  enabled: true,
  guildOnly: false,
-  aliases: ['küfür-engel'],
+  aliases: ['hg-bb'],
  permLevel: 0
 };
 
 exports.help = {
- name: 'küfür-engelle'
+ name: 'hgbb'
 };
