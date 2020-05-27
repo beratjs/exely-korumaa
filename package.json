@@ -25,8 +25,7 @@
     "path": "^0.12.7",
     "common-tags": "^1.8.0",
     "crypto": "^1.0.1",
-    "node-superfetch": "^0.1.10",
-    "moment-duration-format": "^2.2.2"
+    "node-superfetch": "^0.1.10"
   },
   "engines": {
     "node": "12.x"
