@@ -2,7 +2,10 @@ const Discord = require('discord.js')
 
 exports.run = async(client, message ) => {
 
-  message.channel.send(` $client.ws.ping}`)
+const ping = new Discord.MessageEmbed()
+.setTitle('Ping Pong')
+.setDescription(`${client.ws.ping}`)
+return message.channel.send(ping)
 };
 exports.conf = {
   enabled: true,  
@@ -11,4 +14,5 @@ exports.conf = {
   permLevel: 0
 };
 exports.help = {
-  name: 'pingim'g}; 
+  name: 'pingim'
+}; 
