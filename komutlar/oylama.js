@@ -1,8 +1,9 @@
 const Discord = require('discord.js');
 
  exports.run = (client, message, args) => {
-   message.delete();
-
+    message.delete();
+  
+      
    let question = args.join(' ');
 
    let user = message.author.username
@@ -15,7 +16,6 @@ const Discord = require('discord.js');
 
        new Discord.MessageEmbed()
 
-    
        .setTimestamp()
        .addField(`**Oylama**`, `**${question}**`)).then(function(message) {
 
@@ -26,9 +26,8 @@ const Discord = require('discord.js');
            
         });
       
-  
-
-     };
+       
+ };
 
      exports.conf = {
        enabled: true,
