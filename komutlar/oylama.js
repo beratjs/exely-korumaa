@@ -2,7 +2,13 @@ const Discord = require('discord.js');
 
  exports.run = (client, message, args) => {
     message.delete();
-  
+  let dakika = message.minutes
+  setTimeout(()=> {
+
+
+
+
+   },240000)/4 dakika
       
    let question = args.join(' ');
 
@@ -23,7 +29,6 @@ const Discord = require('discord.js');
 
          message.react('❌');
           
-           
         });
       
        
