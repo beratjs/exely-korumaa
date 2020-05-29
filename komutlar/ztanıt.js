@@ -14,23 +14,23 @@ exports.run = async (client, message, args) => {
         const embed = new Discord.MessageEmbed()
     .setDescription('Bu Komutu Sadece `24 Saatte` Bir Kullanabilirsin:Dogrula:')
             .setColor(0x00ffff)
-        message.channel.send({embed})
+        message.channel.send(embed)
         
     } else {
-        const embed = new Discord.MessgaeEmbed()
+        const embed = new Discord.MessageEmbed()
   .setTitle('Başarılı:Dogrula:')
 .setDescription('**Sunucunuz Başarıyla** [Sunucumda](https://discord.gg/kcxGzTD) **Tanıtıldı.**\n**24 Saat Sonra Tekrar Sunucunuzu Tanıtabilirsiniz:bekle:**')
         .setColor('GREEN')
- message.channel.send(embed);
+ message.channel.send(embed)
     message.channel.createInvite({maxAge: 0}).then((invite) => {
-        const embed = new Discord.RichEmbed()
+        const embedcim = new Discord.MessageEmbed()
             .addField(`Tanıtılan Sunucunun Sahibi`, message.author.tag, true)
             .addField(`Tanıtılan Sunucun İsmi`, message.guild.name, true)
       .addField(`Tanıtılan Sunucudaki Üye Sayısı`, message.guild.members.size, true)
       .addField(`Tanıtılan Sunucu Davet Linki`, invite.url, true)
             .setColor('RANDOM')
       .setThumbnail(message.guild.iconURL)
-       client.channels.get('707232675592667287').send(embed)
+       client.channels.get('713478784908656723').send(embedcim)
     db.set(`gunluk_${message.guild.id}`, Date.now());
         })}
 }
