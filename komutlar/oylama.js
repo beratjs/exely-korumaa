@@ -3,13 +3,7 @@ const Discord = require('discord.js');
  exports.run = (client, message, args) => {
     message.delete();
 
-  setTimeout(()=> {
 
-
-
-
-},240000)
-   message.channel.send('Süre Bitti!')
    
    let question = args.join(' ');
 
@@ -29,7 +23,12 @@ const Discord = require('discord.js');
          message.react('✅');
 
          message.react('❌');
-          
+           setTimeout(()=> {
+
+
+
+
+},240000).then message.channel.send('')
         });
       
        
