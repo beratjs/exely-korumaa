@@ -28,7 +28,7 @@ const Discord = require('discord.js');
 
 
 
-},240000).then message.channel.send('')
+},240000).then.channel.send('Süre Bitti!')
         });
       
        
