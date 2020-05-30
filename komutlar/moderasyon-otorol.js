@@ -15,6 +15,12 @@ exports.run = async(client, message, args) => {
   .setDescription(`Bunumu Arıyorsun? ${p}otorol aç @rol #kanal`)
   return message.channel.send(sa)
 }
+  if(heheü) {
+    const heheücüm = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription(`Görünüşe `)
+  }
+
  if (!otorol) {
    const rol = new Discord.MessageEmbed()
    .setTitle('Başarısız!')
