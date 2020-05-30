@@ -26,22 +26,15 @@ if (!ototakipkanal) {
   return message.channel.send(kanal)
 }
   if (args [0] == 'aç') {
-    db.set(`otorol_${message.guild.id}`, 'açık')
+    db.set(`otorol_${message.guild.id}`,otorol.id)
+    db.set(`ototakipkanal_${message.guild.id}`,ototakipkanal.id)
     let lu = await db.fetch(`otorol_${message.guild.id}`)
     const otorols = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Otorolü Ayarladım')
     return message.channel.send(otorols)
     }
-  if (args [0] == 'kapat') {
-    
-    db.delete(`otorol_${message.guild.id}`)
-    
-    const nedenn = new Discord.MessageEmbed()
-    .setTitle('Başarılı!')
-    .setDescription('Otorolü Kapattım!')
-    return message.channel.send(nedenn)
-  }
+
 }
 exports.conf = {
     enabled: true,
