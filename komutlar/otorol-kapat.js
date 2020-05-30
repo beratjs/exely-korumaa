@@ -13,11 +13,11 @@ message.channel.send(`Otorol kapatıldı!\nYeni gelen kullanıcılara hiç bir r
 exports.conf = {
   enabled: true, 
   guildOnly: false, 
-  aliases: ['otorol-kapat'],
+  aliases: ['otorol-kapatttttttttttttt'],
   permLevel: 0 
 };
 exports.help = {
-  name: 'otorolkapat',
+  name: 'otorolkapatttttt',
   description: 'Otorol Sistemi - Frenzy Code',
   usage: 'otorolkapat'
 };

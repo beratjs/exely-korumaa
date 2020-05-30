@@ -5,6 +5,8 @@ const ayarlar = require('../ayarlar.json')
 exports.run = async(client, message, args) => {
 
   let p = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
+  let heheü = await db.fetch(`otorol_${message.guild.id}`) || await db.fetch(`ototakipkanal_${message.guild.id}`)
+
  let otorol = message.mentions.roles.first()
  let ototakipkanal = message.mentions.channels.first()
  if (!args[0]) {
