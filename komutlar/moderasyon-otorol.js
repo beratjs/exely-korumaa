@@ -18,7 +18,8 @@ exports.run = async(client, message, args) => {
   if(heheü) {
     const heheücüm = new Discord.MessageEmbed()
     .setTitle('Başarısız')
-    .setDescription(`Görünüşe `)
+    .setDescription(`Görünüşe Göre Otorol Zaten Açık!`)
+    return message.channel.send(heheücüm)
   }
 
  if (!otorol) {
