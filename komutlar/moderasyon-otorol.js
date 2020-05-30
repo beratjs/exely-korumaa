@@ -33,7 +33,7 @@ if (!ototakipkanal) {
     let lu = await db.fetch(`otorol_${message.guild.id}`)
     const otorols = new Discord.MessageEmbed()
     .setTitle('Başarılı')
-    .setDescription(`Otorolü Ayarladım \n Verilecek Rol : <@&${otorol.id}> \n Mesaj Atılacak Kanal : <@${ototakipkanal.id}> Olarak Ayarladım`)
+    .setDescription(`Otorolü Ayarladım \n Verilecek Rol : <@&${otorol.id}> Olarak Ayarladım`)
     return message.channel.send(otorols)
     }
 
