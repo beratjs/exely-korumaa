@@ -205,7 +205,7 @@ let heheü = await db.fetch(`otorol_${member.guild.id}`)
 let ototakipkanal = await db.fetch(`ototakipkanal_${member.guild.id}`)
 if(!heheü || !ototakipkanal) return
 member.addRole(heheü)
-client.channels.get(ototakipkanal).send(`${member}'a Başarıyla Rolü Verildi!`
+client.channels.get(ototakipkanal).send(`${member}'a Başarıyla Rolü Verildi!`)
 });
 //ototag
 	client.on("guildMemberAdd", async member => {
