@@ -6,7 +6,8 @@ const prefix = ayarlar.prefix;
 
 exports.run = async (client, message, args) => {
   
-  if (!message.member.permissions.has("ADMINISTRATOR")) return message.reply(`Bunu yapabilmek için gerekli yetkiye sahip değilsiniz!`)
+  if (!message.member.permissions.has(      
+      "ADMINISTRATOR")) return message.reply(`Bunu yapabilmek için gerekli yetkiye sahip değilsiniz!`)
   
   let modlogs = db.get(`modlog_${message.guild.id}`)
   
