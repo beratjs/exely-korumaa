@@ -258,3 +258,85 @@ client.on('guildMemberRemove', async member => {
    }
   }
 });
+//MOD-LOG
+client.on('messageDelete', async message   => { // mod-log
+      let modlogs = db.get(`modlog_${message.guild.id}`)
+    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);    
+if (!modlogkanal) return;
+  const embed = new Discord.MessageEmbed()
+  .setColor("ff0000")
+  .setTitle("MESAJ SİLİNDİ")
+.setDescription(`<@!${message.author.id}> adlı kullanıcı tarafından <#${message.channel.id}> kanalına gönderilen mesaj silindi!\n\nSilinen Mesaj: **${message.content}**`)
+  .setFooter(" ! Log Sistemi")
+  modlogkanal.sendEmbed(embed);
+  })
+
+client.on('guildBanAdd', async message  => {
+      let modlogs = db.get(`modlog_${message.guild.id}`)
+    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);    
+if (!modlogkanal) return;
+  const embed = new Discord.MessageEmbed()
+  .setColor("ff0000")
+
+    .setDescription(`Üye Sunucudan Yasaklandı! \n<@!${message.user.id}>, ${message.user.tag}`)
+        .setThumbnail(message.user.avatarURL)
+  .setFooter(" ! Log Sistemi")
+  modlogkanal.sendEmbed(embed);
+  })
+client.on('channelCreate', async channel  => {
+      let modlogs = db.get(`modlog_${channel.guild.id}`)
+    const modlogkanal = channel.guild.channels.find(kanal => kanal.id === modlogs);    
+if (!modlogkanal) return;
+    if (channel.type === "text") {
+                let embed = new Discord.RichEmbed()
+                    .setColor('ff0000')
+                .setDescription(`${channel.name} adlı metin kanalı oluşturuldu.`)
+                .setFooter(` | Log Sistemi Kanal ID: ${channel.id}`)
+                modlogkanal.send({embed});
+            };
+            if (channel.type === "voice") {
+                let embed = new Discord.MessageEmbed()
+                .setColor('ff0000')
+.setTitle("SES KANALI OLUŞTURULDU")
+                .setDescription(`${channel.name} adlı ses kanalı oluşturuldu!`)
+                .setFooter(` | Log Sistemi Kanal ID: ${channel.id}`)
+
+                modlogkanal.send(embed);
+            }
+        
+    })
+client.on('channelDelete', async channel  => {
+      let modlogs = db.get(`modlog_${channel.guild.id}`)
+    const modlogkanal = channel.guild.channels.find(kanal => kanal.id === modlogs);    
+if (!modlogkanal) return;
+    if (channel.type === "text") {
+                let embed = new Discord.MessageEmbed()
+                    .setColor('ff0000')
+                .setDescription(`${channel.name} adlı metin kanalı silini!`)
+                .setFooter(`Rays | Log Sistemi Kanal ID: ${channel.id}`)
+                modlogkanal.send(embed);
+            };
+            if (channel.type === "voice") {
+                let embed = new Discord.MessageEmbed()
+                .setColor('ff0000')
+.setTitle("SES KANALI SİLİNDİ")
+                .setDescription(`${channel.name} adlı ses kanalı silindi`)
+            .setFooter(`Rays | Log Sistemi  Kanal ID: ${channel.id}`)
+                modlogkanal.send({embed});
+            }
+    })
+client.on("messageUpdate", async (oldMsg, newMsg) => {
+  if (oldMsg.author.bot) return;
+  var user = oldMsg.author;
+  if (db.has(`tc-modlog_${oldMsg.guild.id}`) === false) return;
+  var kanal = oldMsg.guild.channels.get(db.fetch(`modlog_${oldMsg.guild.id}`).replace("<#", "").replace(">", ""))
+  if (!kanal) return;
+  const embed = new Discord.RichEmbed()
+  .setColor("ff0000")
+  .addField("Kullanıcı", oldMsg.author.tag, true)
+  .addField("Eski Mesaj",`  ${oldMsg.content}  `)
+  .addField("Yeni Mesaj", `${newMsg.content}`)
+  .setThumbnail(oldMsg.author.avatarURL)
+  kanal.send(embed);  
+        
+    })

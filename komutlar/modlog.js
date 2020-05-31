@@ -45,8 +45,9 @@ if (!args[0]) {
       .setDescription(`Kanal Belirtmedin!`)
       return message.channel.send
       }
-     const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
-    db.set(`modlog_${message.guild.id}`, kanal.id)
+     
+    db.set(`tc-modlog_${message.guild.id}`, kanal.id)
+    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Modlogu Açtım')
