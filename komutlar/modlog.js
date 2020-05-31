@@ -46,7 +46,7 @@ if (!args[0]) {
       return message.channel.send
       }
      
-    db.set(`tc-modlog_${message.guild.id}`, kanal.id)
+    db.set(`modlog_${message.guild.id}`, kanal.id)
     const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
