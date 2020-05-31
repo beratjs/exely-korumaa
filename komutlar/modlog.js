@@ -1,79 +1,35 @@
-const Discord = require('discord.js')
-const db = require('quick.db');
+const Discord = require('discord.js');
 const ayarlar = require('../ayarlar.json');
+const db = require('quick.db')
 
+const prefix = ayarlar.prefix;
 
-exports.run = async(client, message, args) => {
+exports.run = async (client, message, args) => {
+  
+  if (!message.member.permissions.has("ADMINISTRATOR")) return message.reply(`Bunu yapabilmek için gerekli yetkiye sahip değilsiniz!`)
   
   let modlogs = db.get(`modlog_${message.guild.id}`)
   
-  
-  
-let p = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
-if (!message.member.permissions.has('KICK_MEMBERS')) {
-    const izinyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Bu Komut İçin Yetkin Yok!')
-    return message.channel.send(izinyok)
-}
-if (!args[0]) {
-  const sa = new Discord.MessageEmbed()
-  .setTitle('Hatalı Kullanım!')
-  .setDescription(`Bunumu Arıyorsun? ${p}modlog #kanal aç/kapat`)
-  return message.channel.send(sa)
-}
-    
-  
+  if(!modlogs) {
     let kanal = message.mentions.channels.first();
-  
-    if(!kanal) {
-      const bulunamadi = new Discord.MessageEmbed()
-      .setTitle('Hatalı Kullanım')
-      .setDescription(`Kanal Belirtmedin!`)
-      return message.channel.send(bulunamadi)
-      }
-  
-  if (args [0] == 'aç') {
-    db.set(`modlog_${message.guild.id}`, 'açık')
-    let modlogbyme = await db.fetch(`modlog_${message.guild.id}`)
+    if(!kanal) return message.channel.send(` Hatalı kullandın! Örnek Kullanım: \n\n\`${prefix}modlog <#kanal>\`.`)
 
-    
-    let kanal = message.mentions.channels.first();
-    if(!kanal) {
-      const bulunamadi = new Discord.MessageEmbed()
-      .setTitle('Hatalı Kullanım')
-      .setDescription(`Kanal Belirtmedin!`)
-      return message.channel.send
-      }
-     
-    db.set(`tc-modlog_${message.guild.id}`, kanal.id)
+    db.set(`modlog_${message.guild.id}`, kanal.id)
     const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
-    const küfürengelcim = new Discord.MessageEmbed()
-    .setTitle('Başarılı')
-    .setDescription('Modlogu Açtım')
-    return message.channel.send(küfürengelcim)
-
-  }
-  
-  if (args [0] == 'kapat') {
+    message.channel.send(` Modlog kanalı başarılı bir şekilde ayarlandı`)
     
-    db.delete(`modlog_${message.guild.id}`)
-
-   const küfürengelcim2 = new Discord.MessageEmbed()
-    .setTitle('Başarılı')
-    .setDescription('Modlogu Kapattım')
-    return message.channel.send(küfürengelcim2)
-   
-  }
-
-
-};
+    
+    }
+}
 exports.conf = {
-  enabled: true,  
-  guildOnly: false,
-  aliases: [],
-  permLevel: 0
-};
+    enabled: true,
+    guildOnly: false,
+    aliases: ['modlog'],
+    permLevel: 2
+}
+
 exports.help = {
-  name: 'modlog'
-}; 
+    name: 'mod-log',
+    description: '...',
+    usage: 'modlog <#kanal>'
+}
