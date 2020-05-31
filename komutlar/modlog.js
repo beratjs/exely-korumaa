@@ -5,6 +5,10 @@ const ayarlar = require('../ayarlar.json');
 
 exports.run = async(client, message, args) => {
   
+  let modlogs = db.get(`modlog_${message.guild.id}`)
+  
+  
+  
 let p = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
 if (!message.member.permissions.has('KICK_MEMBERS')) {
     const izinyok = new Discord.MessageEmbed()
@@ -15,9 +19,18 @@ if (!message.member.permissions.has('KICK_MEMBERS')) {
 if (!args[0]) {
   const sa = new Discord.MessageEmbed()
   .setTitle('Hatalı Kullanım!')
-  .setDescription(`Bunumu Arıyorsun? ${p}modlog aç/kapat`)
+  .setDescription(`Bunumu Arıyorsun? ${p}modlog #kanal aç/kapat`)
   return message.channel.send(sa)
 }
+    
+  if(!modlogs) {
+    let kanal = message.mentions.channels.first();
+    if(!kanal) {
+      const bulunamadi = new Discord.MessageEmbed()
+      .setTitle('Hatalı Kullanım')
+      .setDescription(`Kanal Belirtmedin!`)
+      }
+  }
   if (args [0] == 'aç') {
     db.set(`modlog_${message.guild.id}`, 'açık')
     let modlogbyme = await db.fetch(`modlog_${message.guild.id}`)
