@@ -19,23 +19,9 @@ if (!message.member.permissions.has('KICK_MEMBERS')) {
 if (!args[0]) {
   const sa = new Discord.MessageEmbed()
   .setTitle('Hatalı Kullanım!')
-  .setDescription(`Bunumu Arıyorsun? ${p}modlog  aç/kapat #kanal`)
+  .setDescription(`Bunumu Arıyorsun? ${p}modlog #kanal | kapat`)
   return message.channel.send(sa)
 }
-    
-  
-    let kanal = message.mentions.channels.first();
-  
-    if(!kanal) {
-      const bulunamadi = new Discord.MessageEmbed()
-      .setTitle('Hatalı Kullanım')
-      .setDescription(`Kanal Belirtmedin!`)
-      return message.channel.send(bulunamadi)
-      }
-  
-  if (args [0] == 'aç') {
-    db.set(`modlog_${message.guild.id}`, 'açık')
-    let modlogayarla = await db.fetch(`modlog_${message.guild.id}`)
 
     
     let kanal = message.mentions.channels.first();
@@ -47,13 +33,13 @@ if (!args[0]) {
       }
      
     db.set(`modlog_${message.guild.id}`, kanal.id)
-    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogayarla);
+    //const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogayarla);
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Modlogu Açtım')
     return message.channel.send(küfürengelcim)
 
-  }
+  
   
   if (args [0] == 'kapat') {
     
