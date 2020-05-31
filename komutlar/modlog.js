@@ -23,18 +23,29 @@ if (!args[0]) {
   return message.channel.send(sa)
 }
     
-  if(!modlogs) {
+  
+    let kanal = message.mentions.channels.first();
+  
+    if(!kanal) {
+      const bulunamadi = new Discord.MessageEmbed()
+      .setTitle('Hatalı Kullanım')
+      .setDescription(`Kanal Belirtmedin!`)
+      return message.channel.send(bulunamadi)
+      }
+  
+  if (args [0] == 'aç') {
+    db.set(`modlog_${message.guild.id}`, 'açık')
+    let modlogbyme = await db.fetch(`modlog_${message.guild.id}`)
+
+    
     let kanal = message.mentions.channels.first();
     if(!kanal) {
       const bulunamadi = new Discord.MessageEmbed()
       .setTitle('Hatalı Kullanım')
       .setDescription(`Kanal Belirtmedin!`)
+      return message.channel.send
       }
-  }
-  if (args [0] == 'aç') {
-    db.set(`modlog_${message.guild.id}`, 'açık')
-    let modlogbyme = await db.fetch(`modlog_${message.guild.id}`)
-    
+  
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Modlogu Açtım')
@@ -52,6 +63,7 @@ if (!args[0]) {
     return message.channel.send(küfürengelcim2)
    
   }
+
 
 };
 exports.conf = {
