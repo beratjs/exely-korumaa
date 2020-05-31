@@ -4,7 +4,8 @@ exports.run = async(client, message ) => {
 
 const ping = new Discord.MessageEmbed()
 .setTitle('Ping Pong')
-.setDescription(`Karşında Pingim! : ${client.ws.ping}`)
+.setDescription(`Karşında Pingim! : ${client.ws.ping}`) 
+.setFi
 return message.channel.send(ping)
 };
 exports.conf = {
