@@ -5,7 +5,7 @@ const ayarlar = require('../ayarlar.json');
 
 exports.run = async(client, message, args) => {
   
-  let modlogs = db.get(`modlog_${message.guild.id}`)
+  let modlogayarla = db.get(`modlog_${message.guild.id}`)
   
   
   
@@ -19,7 +19,7 @@ if (!message.member.permissions.has('KICK_MEMBERS')) {
 if (!args[0]) {
   const sa = new Discord.MessageEmbed()
   .setTitle('Hatalı Kullanım!')
-  .setDescription(`Bunumu Arıyorsun? ${p}modlog #kanal aç/kapat`)
+  .setDescription(`Bunumu Arıyorsun? ${p}modlog  aç/kapat #kanal`)
   return message.channel.send(sa)
 }
     
@@ -35,7 +35,7 @@ if (!args[0]) {
   
   if (args [0] == 'aç') {
     db.set(`modlog_${message.guild.id}`, 'açık')
-    let modlogbyme = await db.fetch(`modlog_${message.guild.id}`)
+    let modlogayarla = await db.fetch(`modlog_${message.guild.id}`)
 
     
     let kanal = message.mentions.channels.first();
@@ -47,7 +47,7 @@ if (!args[0]) {
       }
      
     db.set(`modlog_${message.guild.id}`, kanal.id)
-    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogs);
+    const modlogkanal = message.guild.channels.find(kanal => kanal.id === modlogayarla);
     const küfürengelcim = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Modlogu Açtım')
