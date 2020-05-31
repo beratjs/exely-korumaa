@@ -4,7 +4,7 @@ exports.run = async(client, message, args) => {
 
 if (!args[0]) {
   const sa = new Discord.MessageEmbed()
-  
+  .setTitle('Başarısız')
 }
 };
 exports.conf = {
@@ -14,5 +14,5 @@ exports.conf = {
   permLevel: 0
 };
 exports.help = {
-  name: 'pingim'
+  name: 'modlog'
 }; 
