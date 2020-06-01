@@ -1,4 +1,18 @@
-https://cdn.discordapp.com/avatars/343412762522812419/a_d92792baf69212625e35b8c9362ffaac.gifacaksın?')).then(m => m.delete(5000));
+const Discord = require('discord.js');
+
+ exports.run = (client, message, args) => {
+    message.delete();
+
+
+   
+   let question = args.join(' ');
+
+   let user = message.author.username
+
+   if (!question) return message.channel.send(
+   new Discord.MessageEmbed()
+    .setTitle('Hatalı!')
+     .setDescription('Neyi Oylayacaksın?')).then(m => m.delete(5000));
         message.channel.send(
 
        new Discord.MessageEmbed()
