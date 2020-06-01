@@ -48,8 +48,9 @@ client.on("guildMemberAdd", async member => {
   let rolid = await db.fetch(`otorol_${member.guild.id}`);
   let bilgiKanal = client.channels.cache.get(kanal)
     bilgiKanal.send(`:new: \`${member.user.tag}\` adlı kullanıcıya **${rolisim}** adlı rol verildi.` );
-   member.roleAdd(rolid);
-});
+   member.roles.add(rolid);
+});//hmmm hataya bakalım client.on("guildMemberAdd", async member => { bu method degısmıs olabilirmi?
+
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
