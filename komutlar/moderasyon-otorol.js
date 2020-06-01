@@ -2,7 +2,7 @@ const Discord = require('discord.js')
 const db = require('quick.db');
 exports.run = async(client, message, args) => {
 
-  if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: Otorol ayarlamak için `Rolleri Yönet` yetkisine sahip olman gerek.')
+  if (!message.member.permissions.has('MANAGE_ROLES')) return message.channel.send(':no_entry: Otorol ayarlamak için `Rolleri Yönet` yetkisine sahip olman gerek.')
 
   
     if (args[0] == 'ayarla') {
@@ -13,7 +13,7 @@ let anarol= message.mentions.roles.first() || message.guild.roles.get(args.join(
   else pingRol1 = message.mentions.roles.first().id
  
       let rolisim = message.mentions.roles.first().name  
-  let kanal = message.mentions.channels.firsCt();
+  let kanal = message.mentions.channels.first();
   if (!kanal) return message.channel.send( ' Bilgilendirme mesajlarını atacağım yeri etiketlemelisin. Kullanım: `!otorol ayarla @Rol #kanal`')
     db.set(`otorolisim_${message.guild.id}`, rolisim)
   
