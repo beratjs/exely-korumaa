@@ -6,19 +6,13 @@ const ayarlar = require('../ayarlar.json')
 var prefix= ayarlar.prefix;
 
 module.exports = client => {
-  console.log(`Star | Code`);
-  console.log(`Komutlar Hazı!`);
-  console.log(`Star | Code`);
+  console.log(`marabalar`)
   client.user.setStatus("online");
   //idle = boşta
   //dnd = rahatsız etmeyin
   //online = çevrimiçi
     var oyun = [
-        "Merhaba Ben Rays",
-        "Prefix'im [ !! ]",
-        "Sorun Olursa !!canlı-destek Yazabilirsiniz",
-        "!!yardım yardım sekmesini açar.",
-        "Destek Sunucumuza Gelmeyi Unutmayın..",
+        "maraba ben deneme bot"
     ];
   
     setInterval(function() {
