@@ -3,7 +3,12 @@ const Discord = require('discord.js');
  exports.run = (client, message, args) => {
     message.delete();
 
-
+if (!message.member.permissions.has('ADMINISTRATOR')) {
+    const izinyok = new Discord.MessageEmbed()
+    .setTitle('Başarısız')
+    .setDescription('Bu Komut İçin Yetkin Yok!')
+    return message.channel.send(izinyok)
+  }
    
    let question = args.join(' ');
 
@@ -12,11 +17,13 @@ const Discord = require('discord.js');
    if (!question) return message.channel.send(
    new Discord.MessageEmbed()
     .setTitle('Hatalı!')
-     .setDescription('Neyi Oylayacaksın?')).then(m => m.delete(5000));
+     .setDescription('Duyuru Mesajı Girin!')).then(m => m.delete(5000));
         message.channel.send(
 
-       
-       message.channel.send( `**${question}**`)).then(function(message) {
+      new Discord.MessageEmbed()
+     .setFooter(`${message.author.tag} Duyuru Yaptı`)
+     .setDescription( `**${question}** `)).then(function(message) {
+     
 
      
            setTimeout(()=> {
@@ -34,7 +41,7 @@ const Discord = require('discord.js');
        enabled: true,
        guildOnly: false,
       aliases: ['duyruru'],
-  permLevel: 2
+  permLevel: 0
 };
 
 exports.help = {
