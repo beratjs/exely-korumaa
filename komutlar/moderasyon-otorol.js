@@ -9,6 +9,7 @@ exports.run = async(client, msg, args) => {
     const yetkiyok = new Discord.MessageEmbed()
     .setTitle('Başarısız!')
     .setDescription(`Bunumu Arıyorsun? ${p}otorol`)
+    return msg.channel.send(yetkiyok)
   }
   
   if (args[0] == 'ayarla') {
@@ -18,8 +19,12 @@ exports.run = async(client, msg, args) => {
     let otoRol = msg.mentions.roles.first() || msg.guild.roles.get(args.join(' '));
     
     if (!otoRol) {
-      const rolyok = new Discord.MessageEmbed()
-      
+  const yetkiyok = new Discord.MessageEmbed()
+    .setTitle('Başarısız!')
+    .setDescription(`Rol etiketlemen lazım!`)
+    return msg.channel.send(yetkiyok)
+  
+  }   
     }
     
     else rol1 = msg.mentions.roles.first().id
@@ -27,17 +32,26 @@ exports.run = async(client, msg, args) => {
     let rolIsim = msg.mentions.roles.first().name
     let otoKanal = msg.mentions.channels.first();
     
-    if(!otoKanal) return msg.channel.send("Bi tane kanal etiketlicen yoksa nereye atıcam o mesajları?")
-    
+    if(!otoKanal) {
+      const kanalyok = new Discord.MessageEmbed()
+    .setTitle('Başarısız!')
+    .setDescription(`Kanal Etiketlemen Lazım!`)
+    return msg.channel.send(kanalyok)
+    }
     db.set(`otorolIsim_${msg.guild.id}`, rolIsim)
     
     let rolKanal = await db.set(`otorolKanal_${msg.guild.id}`, msg.mentions.channels.first().id)
 
     let otorol = await db.set(`otorol_${msg.guild.id}`, rol1)
-    if(!msg.guild.roles.get(rol1)) return msg.channel.send("Etiketlenen rolü bulamadım mk. Düzgün etiketle şunu")
+    if(!msg.guild.roles.get(rol1)) {
+      const rolyok = new Discord.MessageEmbed()
+    .setTitle('Başarısız!')
+    .setDescription(`Rol Bulunamadı`)
+    return msg.channel.send(rolyok)
+    }
     msg.channel.send("Otorol sistemi hazır..")
     
-  }
+  
 }
 
 exports.conf = {
