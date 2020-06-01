@@ -1,68 +1,54 @@
-const Discord = require('discord.js');
+const Discord = require('discord.js')
 const db = require('quick.db');
-const ayarlar = require('../ayarlar.json')
-exports.run = async(client, msg, args) => {
-    let p = await require('quick.db').fetch(`prefix_${msg.guild.id}`) || ayarlar.prefix
+exports.run = async(client, message, args) => {
 
-  //üşendin dim i qedapgoaskpaıgjsdfapsıdjgamsdofaksmdfewq
-  if (!msg.member.permissions.has('MANAGE_ROLES')) {
-    const yetkiyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız!')
-    .setDescription(`Bunumu Arıyorsun? ${p}otorol`)
-    return msg.channel.send(yetkiyok)
+  if (!message.member.hasPermission('MANAGE_ROLES')) return message.channel.send(':no_entry: Otorol ayarlamak için `Rolleri Yönet` yetkisine sahip olman gerek.')
+
+  
+    if (args[0] == 'ayarla') {
+   var pingRol1;
+  var pingRol2;
+let anarol= message.mentions.roles.first() || message.guild.roles.get(args.join(' '));
+  if (!anarol) return message.channel.send( ' Yeni kişilere vereceğim rolü etiketlemelisin. Kullanım: `!otorol ayarla @Rol #kanal`')
+  else pingRol1 = message.mentions.roles.first().id
+ 
+      let rolisim = message.mentions.roles.first().name  
+  let kanal = message.mentions.channels.firsCt();
+  if (!kanal) return message.channel.send( ' Bilgilendirme mesajlarını atacağım yeri etiketlemelisin. Kullanım: `!otorol ayarla @Rol #kanal`')
+    db.set(`otorolisim_${message.guild.id}`, rolisim)
+  
+      let rolKanal = await  db.set(`otorolKanal_${message.guild.id}`, message.mentions.channels.first().id)
+      
+  let otorol = await db.set(`otorol_${message.guild.id}`,  pingRol1)
+  if (!message.guild.roles.get(pingRol1)) return message.channel.send(" Etiketlediğin rolü bulamadım. Rolün etiketlenebilir olduğundan emin olmalısın.")
+    message.channel.send(` Başarılı, gerekli ayarlamalar yapıldı.\nYeni kişilere vereceğim rol \`${rolisim}\` olarak ayarlandı.\n Bilgilendirme kanalı <#${rolKanal}> olarak ayarlandı.`)  
+     
+  } 
+
+  if (args[0] == 'kapat') {
+    
+
+    
+    
+    db.delete(`otorolisim_${message.guild.id}`)
+        db.delete(`otorolKanal_${message.guild.id}`)
+    db.delete(`otorol_${message.guild.id}`)
+
+    message.channel.send(` Otorol başarıyla kapatıldı.`)
   }
+};
   
-  if (args[0] == 'ayarla') {
-    var rol1;
-    var rol2;
-    
-    let otoRol = msg.mentions.roles.first() || msg.guild.roles.get(args.join(' '));
-    
-    if (!otoRol) {
-  const yetkiyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız!')
-    .setDescription(`Rol etiketlemen lazım!`)
-    return msg.channel.send(yetkiyok)
   
-  }   
-    }
     
-    else rol1 = msg.mentions.roles.first().id
-    
-    let rolIsim = msg.mentions.roles.first().name
-    let otoKanal = msg.mentions.channels.first();
-    
-    if(!otoKanal) {
-      const kanalyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız!')
-    .setDescription(`Kanal Etiketlemen Lazım!`)
-    return msg.channel.send(kanalyok)
-    }
-    db.set(`otorolIsim_${msg.guild.id}`, rolIsim)
-    
-    let rolKanal = await db.set(`otorolKanal_${msg.guild.id}`, msg.mentions.channels.first().id)
-
-    let otorol = await db.set(`otorol_${msg.guild.id}`, rol1)
-    if(!msg.guild.roles.get(rol1)) {
-      const rolyok = new Discord.MessageEmbed()
-    .setTitle('Başarısız!')
-    .setDescription(`Rol Bulunamadı`)
-    return msg.channel.send(rolyok)
-    }
-    msg.channel.send("Otorol sistemi hazır..")
-    
-  
-}
-
 exports.conf = {
-  enabled: true,
-  guildOnly: true,
-  aliases: [],
-  permLevel: 0
+    enabled: true,
+    guildOnly: true,
+    aliases: [],
+    permLevel: 0
 }
 
 exports.help = {
-  name: 'otorol',
-  description: 'ayberk abin otorol yaptı ewqewwq',
-  usage: 'otorol yapıyon işte sadpgoaks bunlara gerek yok usage description genellıkle siliyorumdlf'
+    name: 'otorol',
+    description: 'Ping oto rol kodu.',
+    usage: 'otorol ayarla <@rol> #kanal'
 }
