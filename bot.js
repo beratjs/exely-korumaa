@@ -153,4 +153,18 @@ client.login(ayarlar.token);
 
 
 //---------------------------------KOMUTLAR---------------------------------\\
-//sa
+//hgbb
+client.on("guildMemberAdd", async member => {
+  if (member.user.bot === true) return;
+  let kanal = db.fetch(`hgbb_${member.guild.id}`);
+ 
+  let bilgiKanal = client.channels.cache.get(kanal)
+    bilgiKanal.send(`Hoşgeldin \`${member.user.tag}\``);
+});//hmmm hataya bakalım client.on("guildMemberAdd", async member => { bu method degısmıs olabilirmi?
+client.on("guildMemberRemove", async member => {
+  if (member.user.bot === true) return;
+  let kanal = db.fetch(`hgbb_${member.guild.id}`);
+ 
+  let bilgiKanal = client.channels.cache.get(kanal)
+    bilgiKanal.send(`Görüşürüz \`${member.user.tag}\``);
+});//hmmm hataya bakalım client.on("guildMemberAdd", async member => { bu method degısmıs olabilirmi?
