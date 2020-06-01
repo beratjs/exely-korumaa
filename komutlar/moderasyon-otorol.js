@@ -8,7 +8,7 @@ exports.run = async(client, message, args) => {
     if (args[0] == 'ayarla') {
    var pingRol1;
   var pingRol2;
-let anarol= message.mentions.roles.first() || message.guild.roles.get(args.join(' '));
+let anarol= message.mentions.roles.first() || message.guild.roles.cache.get(args.join(' '));
   if (!anarol) return message.channel.send( ' Yeni kişilere vereceğim rolü etiketlemelisin. Kullanım: `!otorol ayarla @Rol #kanal`')
   else pingRol1 = message.mentions.roles.first().id
  
@@ -20,7 +20,7 @@ let anarol= message.mentions.roles.first() || message.guild.roles.get(args.join(
       let rolKanal = await  db.set(`otorolKanal_${message.guild.id}`, message.mentions.channels.first().id)
       
   let otorol = await db.set(`otorol_${message.guild.id}`,  pingRol1)
-  if (!message.guild.roles.get(pingRol1)) return message.channel.send(" Etiketlediğin rolü bulamadım. Rolün etiketlenebilir olduğundan emin olmalısın.")
+  if (!message.guild.roles.cache.get(pingRol1)) return message.channel.send(" Etiketlediğin rolü bulamadım. Rolün etiketlenebilir olduğundan emin olmalısın.")
     message.channel.send(` Başarılı, gerekli ayarlamalar yapıldı.\nYeni kişilere vereceğim rol \`${rolisim}\` olarak ayarlandı.\n Bilgilendirme kanalı <#${rolKanal}> olarak ayarlandı.`)  
      
   } 
