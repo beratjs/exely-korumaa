@@ -5,7 +5,7 @@ const ayarlar = require('../ayarlar.json');
 exports.run = async(client, message, args) => {
   
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
-  let lukanal= message.mentions.channels.first()
+  let kanal = message.mentions.channels.first();
 
   if (!message.member.permissions.has('KICK_MEMBERS')) {
     const izinyok = new Discord.MessageEmbed()
@@ -20,15 +20,15 @@ exports.run = async(client, message, args) => {
       return message.channel.send(küfürcuk32)
 
   }
-  if (!lukanal) {
+  if (!kanal) {
     const hgbb = new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription(`Kanal Belitmen Lazım`)
       return message.channel.send(hgbb)
   }
   if (args [0] == 'aç') {
-    db.set(`hgbb_${message.guild.id}`,lukanal.id)
-    let lu = await db.fetch(`hgbb_${message.guild.id}`,lukanal.id)
+    db.set(`hgbb_${message.guild.id}`,kanal.id)
+    let lu = await db.fetch(`hgbb_${message.guild.id}`,kanal.id)
     
     const küfürengelcim6 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
@@ -39,7 +39,7 @@ exports.run = async(client, message, args) => {
   
   if (args [0] == 'kapat') {
     
-    db.delete(`hgbb_${message.guild.id}`,lukanal.id)
+    db.delete(`hgbb_${message.guild.id}`,kanal.id)
 
    const küfürengelcim21 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
