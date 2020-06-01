@@ -20,22 +20,9 @@ require('./util/eventLoader.js')(client);
 const path = require('path');
 const request = require('request');
 const snekfetch = require('snekfetch');
-// ISIM \\
-const isimloz = "Code Music";
-const oynuyorloz = "Code Music";
-// ISIM \\
 
-// KOMUTLAR \\
-const yardımloz = "müzik";
-const playloz = "çal";
-const skiploz = "geç";
-const playingloz = "çalan-ne";
-const volumeloz = "ses";
-const queueloz = "sıra";
-const stoploz = "bitir";
-const pauseloz = "durdur";
-const goloz = "devam";
-// KOMUTLAR \\
+
+//halledicem az işim var afk ok sıkıntı yok
 
 
 
