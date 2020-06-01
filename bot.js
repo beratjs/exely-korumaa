@@ -29,7 +29,7 @@ const snekfetch = require('snekfetch');
 const app = express();
 app.get("/", (request, response) => {
   console.log(
-    ` az önce pinglenmedi. Sonra ponglanmadı... ya da başka bir şeyler olmadı.`
+    ` az önce Ayberk abi projeye giriş yaptı  veya otorol kodladı`
   );
   response.sendStatus(200);
 });
