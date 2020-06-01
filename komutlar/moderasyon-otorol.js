@@ -45,7 +45,7 @@ let anarol= message.mentions.roles.first() || message.guild.roles.cache.get(args
       
   let otorol = await db.set(`otorol_${message.guild.id}`,  pingRol1)
   if (!message.guild.roles.cache.get(pingRol1)) return message.channel.send(" Etiketlediğin rolü bulamadım. Rolün etiketlenebilir olduğundan emin olmalısın.")
-    message.channel.send(` .\nYeni kişilere vereceğim rol \`${rolisim}\` olarak ayarlandı.\n Bilgilendirme kanalı <#${rolKanal}> olarak ayarlandı.`)  
+    message.channel.send(` Otorol Başarıyla Ayarlandı ! \nYeni kişilere vereceğim rol \`${rolisim}\` olarak ayarlandı.\n Bilgilendirme kanalı <#${rolKanal}> olarak ayarlandı.`)  
      
   } 
 

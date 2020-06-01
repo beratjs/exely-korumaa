@@ -47,10 +47,9 @@ client.on("guildMemberAdd", async member => {
   let kanal = db.fetch(`otorolKanal_${member.guild.id}`);
   let rolid = await db.fetch(`otorol_${member.guild.id}`);
   let bilgiKanal = client.channels.cache.get(kanal)
-    bilgiKanal.send(`:new: \`${member.user.tag}\` adlı kullanıcıya **${rolisim}** adlı rol verildi.` );
+    bilgiKanal.send(`:loud_speaker: \`${member.user.tag}\` adlı kullanıcıya **${rolisim}** adlı rol verildi.` );
    member.roles.add(rolid);
 });//hmmm hataya bakalım client.on("guildMemberAdd", async member => { bu method degısmıs olabilirmi?
-
 
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
@@ -154,3 +153,12 @@ client.login(ayarlar.token);
 
 //---------------------------------KOMUTLAR---------------------------------\\
 //sa
+client.on("guildMemberAdd", async member => {
+  if (member.user.bot === true) return;
+  let rolisim = await db.fetch(`otorolisim_${member.guild.id}`);
+  let kanal = db.fetch(`otorolKanal_${member.guild.id}`);
+  let rolid = await db.fetch(`otorol_${member.guild.id}`);
+  let bilgiKanal = client.channels.cache.get(kanal)
+    bilgiKanal.send(`:new: \`${member.user.tag}\` adlı kullanıcıya **${rolisim}** adlı rol verildi.` );
+   member.roles.add(rolid);
+});//hmmm hataya bakalım client.on("guildMemberAdd", async member => { bu method degısmıs olabilirmi?
