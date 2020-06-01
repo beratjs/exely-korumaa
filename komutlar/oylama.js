@@ -37,15 +37,12 @@ const Discord = require('discord.js');
      exports.conf = {
        enabled: true,
        guildOnly: false,
-       aliases: ['oylama'],
-
+      aliases: ['oylama'],
   permLevel: 2
 };
 
 exports.help = {
-  name: 'oylama',
-  description: 'Oylama yapmanızı sağlar.',
-  usage: 'oylama <oylamaismi>'
+  name: 'oylama'
 };
      
  

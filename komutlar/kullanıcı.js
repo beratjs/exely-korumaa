@@ -24,4 +24,4 @@ exports.conf = {
 };
 exports.help = {
   name: 'kullanıcı'
-}; 
+}; //lexiuma menü :) by me
