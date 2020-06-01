@@ -17,7 +17,10 @@ exports.run = async(client, msg, args) => {
     
     let otoRol = msg.mentions.roles.first() || msg.guild.roles.get(args.join(' '));
     
-    if (!otoRol) return msg.channel.send('>:( rol etıketle yoksa duvucem')
+    if (!otoRol) {
+      const rolyok = new Discord.MessageEmbed()
+      
+    }
     
     else rol1 = msg.mentions.roles.first().id
     
