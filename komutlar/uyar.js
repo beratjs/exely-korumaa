@@ -4,8 +4,10 @@ exports.run = async(client, message, args) => {
 
 let user = message.mentions.users.first()
 let sebep = args.slice(1).join(' ')
+let log = await db.fetch(`UyarıLog_${message.guild.id}`)
 
 if (!log) {
+ 
   const m = new Discord.MessageEmbed()
   .setTitle('Başarısız')
   .setDescription('Log Kanalı Belirt!')
@@ -13,7 +15,6 @@ if (!log) {
 }
 if (!(user||sebep)) return message.reply('Kişi ve sebep belirt')
 let uyarısayı = await db.fetch(`UyarıKullanıcı_${message.guild.id}_${user.id}`)
-let log = await db.fetch(`UyarıLog_${message.guild.id}`)
 
 if (!uyarısayı) {
 db.add(`UyarıKullanıcı_${message.guild.id}_${user.id}`,1)
