@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 const db = require('quick.db')
-exports.run = async(client, message, args) => {
+exports.run = async(client, message) => {
 
 let user = message.mentions.users.first()
 let sebep = args.slice(1).join(' ')
@@ -23,7 +23,7 @@ message.reply(`Kullanıcı Uyarıldı! Başarıyla ${user.username} ı ${sebep} 
 user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı}`).catch(err=> {})
 }
 if(uyarısayı >= 5) {
-user.kick(sebep).catch(err => {console.log(err)})
+//user.kick(sebep).catch(err => {console.log(err)})
 message.reply('Kullanıcı Sunucudan Kicklendi Çünkü Uyarı Sayısı 5 oldu!')
 db.delete(`UyarıKullanıcı_${message.guild.id}_${user.id}`)
 user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı} olduğu için Sunucudan Atıldın`).catch(err=> {})
