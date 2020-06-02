@@ -18,17 +18,18 @@ user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! B
 
 
 db.add(`UyarıKullanıcı_${message.guild.id}_${user.id}`,1)
+       
 message.reply(`Kullanıcı Uyarıldı! Başarıyla ${user.username} ı ${sebep} i ile Uyardınız.Toplamda ${uyarısayı} kadar uyarısı var!`)
 user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı}`).catch(err=> {})
 }
-
-if (uyarısayı > 5) {
+if(uyarısayı >= 5) {
 
 user.kick(sebep)
 message.reply('Kullanıcı Sunucudan Kicklendi Çünkü Uyarı Sayısı 5 oldu!')
 db.delete(`UyarıKullanıcı_${message.guild.id}_${user.id}`)
-user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı} olduğu için Sunucudan Atıldın`)
+user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı} olduğu için Sunucudan Atıldın`).catch(err=> {})
 }
+
 };
 exports.conf = {
 enabled: false,
