@@ -15,7 +15,7 @@ user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! B
 } else {
 
 
-db.set(`UyarıKullanıcı_${message.guild.id}_${user.id}`,1)
+
 
 db.add(`UyarıKullanıcı_${message.guild.id}_${user.id}`,1)
 message.reply(`Kullanıcı Uyarıldı! Başarıyla ${user.username} ı ${sebep} i ile Uyardınız.Toplamda ${uyarısayı} kadar uyarısı var!`)
