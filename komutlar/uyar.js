@@ -23,8 +23,7 @@ message.reply(`Kullanıcı Uyarıldı! Başarıyla ${user.username} ı ${sebep} 
 user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı}`).catch(err=> {})
 }
 if(uyarısayı >= 5) {
-
-user.kick(sebep)
+user.kick(sebep).catch(err => {})
 message.reply('Kullanıcı Sunucudan Kicklendi Çünkü Uyarı Sayısı 5 oldu!')
 db.delete(`UyarıKullanıcı_${message.guild.id}_${user.id}`)
 user.send(`${message.guild.name} Sunucusundan ${sebep} i ile Uyarı Aldınız! Toplam Uyarın ${uyarısayı} olduğu için Sunucudan Atıldın`).catch(err=> {})
