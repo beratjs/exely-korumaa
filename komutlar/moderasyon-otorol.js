@@ -58,7 +58,7 @@ let anarol= message.mentions.roles.first() || message.guild.roles.cache.get(args
         db.delete(`otorolKanal_${message.guild.id}`)
     db.delete(`otorol_${message.guild.id}`)
 
-    message.channel.send(` Otorol başarıyla kapatıldı.`)
+    message.channel.send(`Otorol başarıyla kapatıldı.`)
   }
 };
   
