@@ -2,11 +2,11 @@ const Discord = require('discord.js')
 const db = require('quick.db')
 exports.run = async(client, message) => {
   
-  message.guild.members.forEach(user => {
+  message.guild.members.cache.forEach(user => {
  db.delete(`UyarıKullanıcı_${message.guild.id}_${user.user.id}`)
     })
  db.delete(`UyarıLog_${message.guild.id}`)
-message.channel.send(`Uyarı Sistemini Sıfırlandın!`)
+message.channel.send('Uyarı Sistemini Sıfırlandın!')
 };
 exports.conf = {
 enabled: false,
