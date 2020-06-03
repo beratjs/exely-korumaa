@@ -224,7 +224,7 @@ client.on("guildMemberAdd", async member => {
     let veri12 = await db.fetch(`roldavet1_${member.guild.id}`);
     let veri21 = await db.fetch(`roldavet2_${member.guild.id}`);
     let veri2 = await db.fetch(`rol2_${member.guild.id}`);
-    let kanal = await db.fetch(`davetkanal_${member.guild.id}`);
+    let kanal = await db.fetch(`kanal_${member.guild.id}`);
     if (!kanal) return;
     const ei = invites[member.guild.id];
 
