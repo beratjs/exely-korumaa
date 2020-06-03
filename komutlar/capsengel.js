@@ -7,14 +7,14 @@ exports.run = async(client, message, args) => {
   let prefix = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
   
 
-  if (!message.member.hasPermissions('KICK_MEMBERS')) {
-    const izinyok34 = new Discord.RichEmbed()
+  if (!message.member.permissions.has('KICK_MEMBERS')) {
+    const izinyok34 = new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription('Bu Komut İçin Yetkin Yok!')
     return message.channel.send(izinyok34)
   }
   if (!args[0])  {
-    const küfürcuk = new Discord.RichEmbed()
+    const küfürcuk = new Discord.MessageEmbed()
     .setTitle('Başarısız')
     .setDescription(`Bunumu Arıyorsun? \n ${prefix}capslock-engel aç/kapat`)
       return message.channel.send(küfürcuk)
@@ -24,7 +24,7 @@ exports.run = async(client, message, args) => {
     db.set(`capslock_${message.guild.id}`, 'açık')
     let lu = await db.fetch(`capslock_${message.guild.id}`)
     
-    const küfürengelcim23 = new Discord.RichEmbed()
+    const küfürengelcim23 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('CapsLock Engeli Açtım')
     return message.channel.send(küfürengelcim23)
@@ -35,7 +35,7 @@ exports.run = async(client, message, args) => {
     
     db.delete(`capslock_${message.guild.id}`)
 
-   const küfürengelcim222 = new Discord.RichEmbed()
+   const küfürengelcim222 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Capslock Engeli Kapattım')
     return message.channel.send(küfürengelcim222)

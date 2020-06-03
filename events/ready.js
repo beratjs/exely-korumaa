@@ -8,7 +8,7 @@ var prefix= ayarlar.prefix;
 module.exports = client => {
   console.log(`maraba`);
   client.user.setStatus("idle");
-  client.user.setActivity("🔥Bakım Molası", { type: "WATCHING" });
+  client.user.setActivity("Deneme Botumuz", { type: "WATCHING" });
   
 
   
