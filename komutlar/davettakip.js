@@ -47,5 +47,5 @@ exports.conf = {
   permLevel: 0
 };
 exports.help = {
-  name: 'davet-takip '
+  name: 'davet-takip'
 }; 
