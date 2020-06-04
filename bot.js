@@ -68,7 +68,7 @@ client.on("guildMemberRemove", async member => {
   db.add(`davet_${d}_${member.guild.id}`, -1);
 
   if (!d) {
-    const aa = new Discord.RichEmbed()
+    const aa = new Discord.MessageEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`Bulunamadı!\`\``
@@ -77,7 +77,7 @@ client.on("guildMemberRemove", async member => {
     client.channels.cache.get(kanal).send(aa);
     return;
   } else {
-    const aa = new Discord.RichEmbed()
+    const aa = new Discord.MessageEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`${sa.tag}\`\``
@@ -130,7 +130,7 @@ client.on("guildMemberAdd", async member => {
       sayı2 = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
     }
 
-    const aa = new Discord.RichEmbed()
+    const aa = new Discord.MessageEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${davetçi.tag}\`\`\n**Toplam \`\`${sayı2}\`\` daveti oldu!**`

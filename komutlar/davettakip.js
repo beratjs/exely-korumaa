@@ -3,7 +3,7 @@ const db = require("quick.db");
 module.exports.run = async (bot, message, args) => {
   let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
   if (!message.member.hasPermission("KICK_MEMBERS")) {
-    const embed = new Discord.RichEmbed()
+    const embed = new Discord.MessageEmbed()
       .setDescription("```Ne yazık ki bu komutu kullanmaya yetkin yok.```")
     .setFooter(bot.user.username, bot.user.avatarURL)
       .setColor("BLACK");
@@ -16,13 +16,13 @@ module.exports.run = async (bot, message, args) => {
 
   if (!kanal) {
     return message.channel.send(
-      new Discord.RichEmbed()
+      new Discord.MessageEmbed()
         .setDescription("Lütfen bir kanal belirtiniz!")
       .setFooter(bot.user.username, bot.user.avatarURL)
         .setColor("BLACK")
     );
   }
-  const embed = new Discord.RichEmbed()
+  const embed = new Discord.MessageEmbed()
     .setColor("BLACK")
   .setFooter(bot.user.username, bot.user.avatarURL)
     .setDescription(`Davet kanalı; ${kanal} olarak ayarlandı!`);
