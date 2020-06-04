@@ -68,22 +68,22 @@ client.on("guildMemberRemove", async member => {
   db.add(`davet_${d}_${member.guild.id}`, -1);
 
   if (!d) {
-    const aa = new Discord.MessageEmbed()
+    const aa = new Discord.RichEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`Bulunamadı!\`\``
       )
       .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.cache.get(kanal).send(aa);
+    client.channels.get(kanal).send(aa);
     return;
   } else {
-    const aa = new Discord.MessageEmbed()
+    const aa = new Discord.RichEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs aramızdan ayrıldı.\nŞahsı davet eden:** \`\`${sa.tag}\`\``
       )
       .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.cache.get(kanal).send(aa);
+    client.channels.get(kanal).send(aa);
 
     if (!veri) return;
 
@@ -130,24 +130,24 @@ client.on("guildMemberAdd", async member => {
       sayı2 = await db.fetch(`davet_${invite.inviter.id}_${member.guild.id}`);
     }
 
-    const aa = new Discord.MessageEmbed()
+    const aa = new Discord.RichEmbed()
       .setColor("BLACK")
       .setDescription(
         `\`\`${member.user.tag}\`\` **adlı şahıs sunucuya katıldı.\nŞahsı davet eden:** \`\`${davetçi.tag}\`\`\n**Toplam \`\`${sayı2}\`\` daveti oldu!**`
       )
       .setFooter(client.user.username, client.user.avatarURL);
-    client.channels.cache.get(kanal).send(aa);
+    client.channels.get(kanal).send(aa);
     if (!veri) return;
 
     if (!sasad.roles.has(veri)) {
       if (sayı2 => veri12) {
-        sasad.roles.add(veri);
+        sasad.addRoles(veri);
         return;
       }
     } else {
       if (!veri2) return;
       if (sayı2 => veri21) {
-        sasad.roles.add(veri2);
+        sasad.addRoles(veri2);
         return;
       }
     }
