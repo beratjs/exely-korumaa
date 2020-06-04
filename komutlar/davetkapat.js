@@ -1,35 +1,47 @@
-const Discord = require('discord.js')
-const db = require('quick.db');
-const ayarlar = require('../ayarlar.json');
+const Discord = require("discord.js");
+const db = require("quick.db");
+module.exports.run = async (bot, message, args) => {
+  let prefix = (await db.fetch(`prefix_${message.guild.id}`)) || "!";
+  if (!message.member.hasPermission("KICK_MEMBERS")) {
+    const embed = new Discord.RichEmbed()
+      .setDescription("```Ne yazık ki bu komutu kullanmaya yetkin yok.```")
+    .setFooter(bot.user.username, bot.user.avatarURL)
+      .setColor("BLACK");
 
-exports.run = async(client, message, args) => {
-  let p = await require('quick.db').fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
-  
-if (!message.member.permissions.has('MANAGE_SERVER')) {
-    const izinyok34 = new Discord.MessageEmbed()
-    .setTitle('Başarısız')
-    .setDescription('Bu Komut İçin Yetkin Yok!')
-    return message.channel.send(izinyok34)
+    message.channel.send(embed);
+    return;
   }
+
+  let kanal = await db.fetch(`davetkanal_${message.guild.id}`)
+
+  if (!kanal) {
+    return message.channel.send(
+      new Discord.RichEmbed()
+        .setDescription("Davet kanalı zaten ayarlanmamış!")
+      .setFooter(bot.user.username, bot.user.avatarURL)
+        .setColor("BLACK")
+    );
+  }
+  db.delete(`davetkanal_${message.guild.id}`)
+  const embed = new Discord.RichEmbed()
+    .setColor("BLACK")
+  .setFooter(bot.user.username, bot.user.avatarURL)
+    .setDescription(`Davet kanalı başarıyla sıfırlandı!`);
+  message.channel.send(embed);
+return
   
-
-    db.delete(`davettakip_${message.guild.id}`)
-
-   const küfürengelcim222 = new Discord.MessageEmbed()
-    .setTitle('Başarılı')
-    .setDescription('Davet Takip Sistemini Kapattım!')
-    return message.channel.send(küfürengelcim222)
-   
-  
-
-    
 };
-exports.conf = {
-  enabled: true,  
-  guildOnly: false,
-  aliases: [],
-  permLevel: 0
+
+module.exports.conf = {
+  aliases: ["davetkanalsıfırla"],
+  permLevel: 2,
+  enabled: true,
+  guildOnly: true,
+  kategori: "moderasyon"
 };
-exports.help = {
-  name: 'davet-takip-kapat'
-}; 
+
+module.exports.help = {
+  name: "davet-kanal-sıfırla",
+  description: "davet-kanal-sıfırla",
+  usage: "davet-kanal-sıfırla"
+};
