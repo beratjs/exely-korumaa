@@ -33,6 +33,7 @@ exports.run = async(client, message, args) => {
     const küfürengelcim6 = new Discord.MessageEmbed()
     .setTitle('Başarılı')
     .setDescription('Hg-bbyi Açtım')
+    .setColor("RED")
     return message.channel.send(küfürengelcim6)
 
   }
