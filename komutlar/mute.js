@@ -8,13 +8,13 @@ var mutelirolu = "Muted" //MUTELENDİGİ ZAMAN VERİLECEK ROLU  BURAYA YAZINIZ..
 module.exports.run = async (bot, message, args) => {
       if (!message.member.permissions.has ('MANAGE_MESSAGES')) return message.channel.send("Yapmak İçin Kick Members Yetkisine Sahip Olmalısın.")
 
-  let mutekisi = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-  if(!mutekisi) return message.reply(`:warning: Lütfen bir kullanıcı etiketleyiniz! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``)
-  if(mutekisi.hasPermission("MANAGE_MESSAGES")) return message.reply(`:warning: Yetkili bir kişiyi muteleyemem! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``)
+let mutekisi = message.mentions.users.first()
+if(!mutekisi) return message.reply(`:warning: Lütfen bir kullanıcı etiketleyiniz! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``)
+  if(mutekisi.permissions.has("MANAGE_MESSAGES")) return message.reply(`:warning: Yetkili bir kişiyi muteleyemem! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``)
   let muterol = message.guild.roles.find(`name`, mutelirolu);
   if(!muterol){
     try{
-      muterol = await message.guild.createRole({
+      muterol = await message.guild.roles.create({
         name: mutelirolu,
         color: "ff0000",
         permissions:[]
@@ -37,7 +37,7 @@ module.exports.run = async (bot, message, args) => {
 
   if(!mutezaman) return message.reply(`:warning: Lütfen bir zaman giriniz! \nDoğru Kullanım; \`${prefix}mute <@kullanıcı> <1sn/1dk/1sa/1g>\``)
 
-  await(mutekisi.addRole(muterol.id));
+  await(mutekisi.roles.add(muterol.id));
   message.reply(`<@${mutekisi.id}> kullanıcısı ${args[1]} süresi boyunca mutelendi!`);
 
   setTimeout(function(){
