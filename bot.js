@@ -332,8 +332,8 @@ client.on("messageUpdate", async (oldMsg, newMsg) => {
 })
 //sayac
 client.on("guildMemberAdd", async member => {
-  let frenzysayı = await db.fetch(`FrenzyCode+SayaçSayı_${member.guild.id}`);
-  let frenzykanal = await db.fetch(`FrenzyCode+SayaçKanal_${member.guild.id}`);
+  let frenzysayı = await db.fetch(`sayaçsayı_${member.guild.id}`);
+  let frenzykanal = await db.fetch(`kanal2_${member.guild.id}`);
   if (!frenzysayı || !frenzykanal) return;
   let sonuç = frenzysayı - member.guild.memberCount;
   client.channels.cache
@@ -343,8 +343,8 @@ client.on("guildMemberAdd", async member => {
     );
 });
 client.on("guildMemberRemove", async member => {
-  let frenzysayı = await db.fetch(`FrenzyCode+SayaçSayı_${member.guild.id}`);
-  let frenzykanal = await db.fetch(`FrenzyCode+SayaçKanal_${member.guild.id}`);
+  let frenzysayı = await db.fetch(`sayaçsayı_${member.guild.id}`);
+  let frenzykanal = await db.fetch(`kanal2_${member.guild.id}`);
   if (!frenzysayı || !frenzykanal) return;
   let sonuç = frenzysayı - member.guild.memberCount;
 
