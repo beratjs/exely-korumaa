@@ -3,7 +3,7 @@ const Discord = require('discord.js'),
 
 exports.run = async (client, message, args) => {
    let sayaçsayı = args[1]
-   let kanal = message.mentions.channels.first()
+   let kanal2 = message.mentions.channels.first()
    
   if(!message.member.permissions.has('MANAGE_SERVER')) {
     const a = new Discord.MessageEmbed()
@@ -12,7 +12,7 @@ exports.run = async (client, message, args) => {
     return message.channel.send(a)
   }
   
-   if(!kanal) {
+   if(!kanal2) {
     const a = new Discord.MessageEmbed()
     .setTitle('Hata!')
     .setDescription('Kanal Belirtmen Lazım!')
@@ -32,10 +32,10 @@ exports.run = async (client, message, args) => {
   }
   
   await db.set(`sayaçsayı_${message.guild.id}`,sayaçsayı)
-    await db.set(`kanal_${message.guild.id}`,kanal.id)
+    await db.set(`kanal2_${message.guild.id}`,kanal2.id)
      const a = new Discord.MessageEmbed()
     .setTitle('Başarılı!')
-    .setDescription(`Sayaç Ayarlandı! \n Kanal : ${kanal} \n Sayaç Hedefi: ${sayaçsayı} Olarak Ayarlandı`)
+    .setDescription(`Sayaç Ayarlandı! \n Kanal : ${kanal2} \n Sayaç Hedefi: ${sayaçsayı} Olarak Ayarlandı`)
      .setColor("RED")
   return message.channel.send(a)
   
