@@ -330,4 +330,28 @@ client.on("messageUpdate", async (oldMsg, newMsg) => {
         
     
 })
-//otorol
+//sayac
+client.on("guildMemberAdd", async member => {
+  let frenzysayı = await db.fetch(`FrenzyCode+SayaçSayı_${member.guild.id}`);
+  let frenzykanal = await db.fetch(`FrenzyCode+SayaçKanal_${member.guild.id}`);
+  if (!frenzysayı || !frenzykanal) return;
+  let sonuç = frenzysayı - member.guild.memberCount;
+  client.channels.cache
+    .get(frenzykanal)
+    .send(
+      `<a:blobjoining:699974362081525870> | ${member}, Hoşgeldin  **${frenzysayı}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.`
+    );
+});
+client.on("guildMemberRemove", async member => {
+  let frenzysayı = await db.fetch(`FrenzyCode+SayaçSayı_${member.guild.id}`);
+  let frenzykanal = await db.fetch(`FrenzyCode+SayaçKanal_${member.guild.id}`);
+  if (!frenzysayı || !frenzykanal) return;
+  let sonuç = frenzysayı - member.guild.memberCount;
+
+  client.channels.cache
+    .get(frenzykanal)
+    .send(
+      ` <a:ablobleaving:699974363209793547> | ${member}, Sunucudan Ayrıldı! **${frenzysayı}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.`
+    );
+  return;
+});
