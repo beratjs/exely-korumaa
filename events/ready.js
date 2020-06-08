@@ -6,7 +6,7 @@ const ayarlar = require('../ayarlar.json')
 var prefix= ayarlar.prefix;
 
 module.exports = client => {
-  console.log(`maraba`);
+  console.log(`${client.guilds.size} Kadar Sunucuya Hizmet Veriyorum!`);
   client.user.setStatus("idle");
   client.user.setActivity("Deneme Botumuz", { type: "WATCHING" });
   

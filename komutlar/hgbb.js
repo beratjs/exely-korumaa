@@ -26,7 +26,6 @@ exports.run = async(client, message, args) => {
     .setDescription(`Kanal Belitmen Lazım`)
       return message.channel.send(hgbb)
   }
-  if (args [0] == 'aç') {
     db.set(`hgbb_${message.guild.id}`,kanal.id)
     let lu = await db.fetch(`hgbb_${message.guild.id}`,kanal.id)
     
@@ -36,19 +35,8 @@ exports.run = async(client, message, args) => {
     .setColor("RED")
     return message.channel.send(küfürengelcim6)
 
-  }
   
-  if (args [0] == 'kapat') {
-    
-    db.delete(`hgbb_${message.guild.id}`,kanal.id)
-
-   const küfürengelcim21 = new Discord.MessageEmbed()
-    .setTitle('Başarılı')
-    .setDescription('Hg-bbyi Kapattım')
-    return message.channel.send(küfürengelcim21)
-   
-  }
-
+  
   
   
   
