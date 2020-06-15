@@ -150,32 +150,32 @@ client.on("message", async msg => {
   }
   }
 });
-//sayaç frenzy codeye ait!
 client.on("guildMemberAdd", async member => {
-  let frenzysayı = await db.fetch(`sayaçsayı_${member.guild.id}`);
-  let frenzykanal = await db.fetch(`kanal2_${member.guild.id}`);
-  if (!frenzysayı || !frenzykanal) return;
-  let sonuç = frenzysayı - member.guild.memberCount;
+  let sa = await db.fetch(`sayaçsayı_${member.guild.id}`);
+  let as = await db.fetch(`kanal2_${member.guild.id}`);
+  if (!sa || !as) return;
+  let sonuç = sa - member.guild.memberCount;
   client.channels.cache
-    .get(frenzykanal)
+    .get(as)
     .send( 
-    `${member}, Hoşgeldin  **${frenzysayı}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.`
+    `${member}, Hoşgeldin  **${sa}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.`
     );
 });
 client.on("guildMemberRemove", async member => {
-  let frenzysayı = await db.fetch(`sayaçsayı_${member.guild.id}`);
-  let frenzykanal = await db.fetch(`kanal2_${member.guild.id}`);
-  if (!frenzysayı || !frenzykanal) return;
-  let sonuç = frenzysayı - member.guild.memberCount;
+  let sa = await db.fetch(`sayaçsayı_${member.guild.id}`);
+  let as = await db.fetch(`kanal2_${member.guild.id}`);
+  if (!sa || !as) return;
+  let sonuç = sa - member.guild.memberCount;
 
   client.channels.cache
-    .get(frenzykanal)
+    .get(as)
     .send(
-      `   ${member}, Sunucudan Ayrıldı! **${frenzysayı}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.`
-    );
+    new Discord.RichEmbed()
+    .setDescription(`${member} :outbox_tray: Sunucudan Ayrıldı! **${sa}** Kişiye Ulaşmak İçin  **${sonuç}** Kişi Kaldı.` )
+    )
   return;
+    
 });
-//hgbb frenzy codeye ait ben editledim biraz
 client.on('guildMemberAdd', async member => {
   let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
   let luchannel = client.channels.cache.get(lukanal)
