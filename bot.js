@@ -24,16 +24,6 @@ const snekfetch = require('snekfetch');
 
 
 const app = express();
-app.get("/", (request, response) => {
-  console.log(
-    ` az önce Ayberk abi projeye giriş yaptı  veya invite kodu verdi :D`
-  );
-  response.sendStatus(200);
-});
-app.listen(process.env.PORT);
-setInterval(() => {
-  http.get(`http://${process.env.PROJECT_DOMAIN}.glitch.me/`);
-}, 280000);
 var prefix = ayarlar.prefix;
 
 const log = message => {
