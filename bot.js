@@ -178,3 +178,16 @@ client.on('guildMemberRemove', async member => {
   if(!luchannel) return
   luchannel.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
 })
+//sayaççç
+client.on("guildMemberAdd", async member => {
+    let sa = await db.fetch(`sayıcık_${member.guild.id}`);
+  let as = await db.fetch(`kanalcık_${member.guild.id}`);
+  if (!sa || !as) return
+  
+  if (sa > member.guild.memberCount) {
+    const sa2 = new Discord.MessageEmbed()
+    .setDescription(`Başarılı Bir Şekilde ${sa2} Kadar Kişi Olduk`)
+    client.channel.cache.get(as).send(sa2)
+  }
+  return
+})
