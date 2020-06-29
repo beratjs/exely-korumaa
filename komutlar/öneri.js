@@ -15,7 +15,7 @@ const sa = new Discord.MessageEmbed()
 
 .setFooter('Öneri Sistemi')
 .setDescription(`Kullanıcı : ${message.author.tag} \n Sunucu : ${message.guild.name} \n Önerisi : ${önericik} `)
-client.channels.cache.get(' ').send(sa)
+client.channels.cache.get('713478784908656723').send(sa)
                 
 }
 exports.conf = {
