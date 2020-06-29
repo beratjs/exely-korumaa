@@ -172,12 +172,16 @@ let channel = client.channels.cache.get(kanal)
   if(!channel) return
 channel.send(
 new Discord.MessageEmbed()
-.setd)
+.setDescription(`Yeni Üye! ${member} Seninle Birlikle ${member.guild.memberCount} Kişi Olduk! `)
+)
 })
 client.on('guildMemberRemove', async member => {
   let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
   let luchannel = client.channels.cache.get(lukanal)
   if(!luchannel) return
-  luchannel.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
+  luchannel.send(
+  new Discord.MessageEmbed()
+.setDescription(`Görüşürüz ${member} `)
+  )
 })
 //sayaççç
