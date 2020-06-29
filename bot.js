@@ -183,11 +183,25 @@ client.on("guildMemberAdd", async member => {
     let sa = await db.fetch(`sayıcık_${member.guild.id}`);
   let as = await db.fetch(`kanalcık_${member.guild.id}`);
   if (!sa || !as) return
-  
+    let sonuç = sa - member.guild.memberCount;
+
   if (sa > member.guild.memberCount) {
     const sa2 = new Discord.MessageEmbed()
     .setDescription(`Başarılı Bir Şekilde ${sa2} Kadar Kişi Olduk`)
     client.channel.cache.get(as).send(sa2)
   }
+  return
+})
+client.on("guildMemberRemove", async member => {
+    let sa = await db.fetch(`sayıcık_${member.guild.id}`);
+  let as = await db.fetch(`kanalcık_${member.guild.id}`);
+  if (!sa || !as) return
+    let sonuç = sa - member.guild.memberCount;
+
+  client.channels.cache.get(as).send(
+  new Discord.MessageEmbed()
+    .setDescription(`Kullanıcı Ayrıldı! ${sa} Kişi Olmamıza ${sonuç} Kişi Kaldı! ${member.guild.memberCount} Kişiyiz`)
+    
+  )
   return
 })
