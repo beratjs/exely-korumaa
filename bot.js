@@ -186,10 +186,12 @@ client.on("guildMemberAdd", async member => {
     let sonuç = sa - member.guild.memberCount;
 
   if (sa > member.guild.memberCount) {
-    const sa2 = new Discord.MessageEmbed()
-    .setDescription(`Başarılı Bir Şekilde ${sa2} Kadar Kişi Olduk`)
-    client.channel.cache.get(as).send(sa2)
+    client.channels.cache.get(as).send(
+    new Discord.MessageEmbed()
+    .setDescription(`Başarılı Bir Şekilde ${sa} Kadar Kişi Olduk`)
+      )
   }
+      
   return
 })
 client.on("guildMemberRemove", async member => {
