@@ -26,7 +26,6 @@ exports.run = async(client, message, args) => {
     .setDescription(`Kanal Belitmen Lazım`)
       return message.channel.send(hgbb)
   }
-    db.set(`hgbb_${message.guild.id}`,kanal.id)
     let lu = await db.fetch(`hgbb_${message.guild.id}`,kanal.id)
     
     const küfürengelcim6 = new Discord.MessageEmbed()
@@ -34,6 +33,7 @@ exports.run = async(client, message, args) => {
     .setDescription('Hg-bbyi Açtım')
     .setColor("RED")
     return message.channel.send(küfürengelcim6)
+    db.set(`hgbb_${message.guild.id}`,kanal.id)
 
   
   

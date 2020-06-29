@@ -167,10 +167,12 @@ client.on("guildMemberRemove", async member => {
     
 });
 client.on('guildMemberAdd', async member => {
-  let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
-  let luchannel = client.channels.cache.get(lukanal)
-  if(!luchannel) return
-luchannel.send(` Uuuu Sunucuya Yeni Üye! Karşınızda ${member} Sunucuya Katıldı!`)
+  let kanal = await db.fetch(`hgbb_${member.guild.id}`)
+let channel = client.channels.cache.get(kanal)
+  if(!channel) return
+channel.send(
+new Discord.MessageEmbed()
+.setd)
 })
 client.on('guildMemberRemove', async member => {
   let lukanal = await db.fetch(`hgbb_${member.guild.id}`)
@@ -179,31 +181,3 @@ client.on('guildMemberRemove', async member => {
   luchannel.send(` Keşke Gitmeseydin Bee! ${member.user.username} Sunucudan Ayrıldı!`)
 })
 //sayaççç
-client.on("guildMemberAdd", async member => {
-    let sa = await db.fetch(`sayıcık_${member.guild.id}`);
-  let as = await db.fetch(`kanalcık_${member.guild.id}`);
-  if (!sa || !as) return
-    let sonuç = sa - member.guild.memberCount;
-
-  if (sa > member.guild.memberCount) {
-    client.channels.cache.get(as).send(
-    new Discord.MessageEmbed()
-    .setDescription(`Başarılı Bir Şekilde ${sa} Kadar Kişi Olduk`)
-      )
-  }
-      
-  return
-})
-client.on("guildMemberRemove", async member => {
-    let sa = await db.fetch(`sayıcık_${member.guild.id}`);
-  let as = await db.fetch(`kanalcık_${member.guild.id}`);
-  if (!sa || !as) return
-    let sonuç = sa - member.guild.memberCount;
-
-  client.channels.cache.get(as).send(
-  new Discord.MessageEmbed()
-    .setDescription(`Kullanıcı Ayrıldı! ${sa} Kişi Olmamıza ${sonuç} Kişi Kaldı! ${member.guild.memberCount} Kişiyiz`)
-    
-  )
-  return
-})
