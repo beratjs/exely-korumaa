@@ -185,3 +185,9 @@ client.on('guildMemberRemove', async member => {
   )
 })
 //sayaççç
+client.on("message", async msg => {
+  if (msg.content.toLowerCase() === 'sa') {
+    msg.reply('Aleyküm Selam Hoşgeldin');
+  
+  }
+})
