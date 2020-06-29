@@ -41,7 +41,7 @@ exports.run = async (client, message, args) => {
 
       
 
-      return message.reply(`Sunucunu Her 24 Saate Bir Tanıtabilirsin!`)
+      return message.reply(`Her 24 Saate Bir Para Alabilirsin`)
 
       
 
