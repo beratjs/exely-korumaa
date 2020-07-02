@@ -1,3 +1,3 @@
 # Çalınması Yasaktır
 
-`Helloo`
+- Çalan Kodır Dil Anlamışşsen?

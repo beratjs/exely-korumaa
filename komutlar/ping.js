@@ -9,8 +9,6 @@ const ping = new Discord.MessageEmbed()
 return message.channel.send(ping)
 };
 exports.conf = {
-  enabled: true,  
-  guildOnly: false,
   aliases: [],
   permLevel: 0
 };

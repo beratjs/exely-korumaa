@@ -8,7 +8,7 @@ var prefix= ayarlar.prefix;
 module.exports = client => {
   console.log(`${client.guilds.size} Kadar Sunucuya Hizmet Veriyorum!`);
   client.user.setStatus("idle");
-  client.user.setActivity("Deneme Botumuz", { type: "WATCHING" });
+    client.user.setActivity("Boş Altyapı", { type: "WATCHING" });
   
 
   
