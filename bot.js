@@ -213,7 +213,7 @@ client.on("roleDelete", async(role , channel , message , guild) => {
 ///spamke
 const antispam = require("discord-anti-spam-tr");
 antispam(client, {
-  uyarmaSınırı: 1, //Uyarılmadan önce aralıkta gönderilmesine izin verilen maksimum mesaj miktarı.
+  uyarmaSınırı: 5, //Uyarılmadan önce aralıkta gönderilmesine izin verilen maksimum mesaj miktarı.
   banlamaSınırı: 1, //Yasaklanmadan önce aralıkta gönderilmesine izin verilen maksimum ileti miktar.
   aralık: 1000, // ms kullanıcılarda zaman miktarı, yasaklanmadan önce aralık değişkeninin maksimumunu gönderebilir.
   uyarmaMesajı: "Spamı Durdur Yoksa Mutelerim.", // Uyarı mesajı, kullanıcıya hızlı gideceklerini belirten kullanıcıya gönderilir..
@@ -228,21 +228,24 @@ antispam(client, {
 //_____________________________
 
 
+//////////////////////////////BotAtack/////////////////////////////////////////////////
+
 client.on('guildMemberAdd', (member) => {
     const guild = member.guild;
 
 
+ let sChannel = member.guild.channels.cache.find(c => c.name === 'sa')
 
-    if(member.user.bot === true){
+    if(member.user.bot !==true){
 
     } 
     else {
-//hey wha 
-      guild.members.ban(member)
+
+    sChannel.send(`@here sa`)
+    .then(() => console.log(`yasaklandı ${member.displayName}`))
+    .catch(console.error);
+       member.ban(member) 
   }  
   });
-
-//dxdxdxdxdxd xd
-
 
 
