@@ -237,6 +237,7 @@ client.on("message", async message => {
     .setDescription(`<@${message.author.id}> Dostum Bu İkinci Uyarın Lütfen Bidaha Tekrarlama \n 2/3`)
     .setTimestamp()
        return message.channel.send(sa2)
+            yazan.send(` Dostum Bu İkinci Uyarın Lütfen Bidaha Tekrarlama \n 2/3`)
           }
           if (sayı > 2) {
             message.delete()
@@ -247,7 +248,7 @@ client.on("message", async message => {
        return message.channel.send(sa2)
           }
           yazan.send(`Reklamdan Dolayı Kicklendin!`)
-          guild.members.kick(yazan)
+         guild.members(yazan).kick()
         }
       } catch(err) {
         console.log(err);
