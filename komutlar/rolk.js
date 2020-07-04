@@ -25,7 +25,7 @@ let prefix = ayarlar.prefix
     
     db.delete(`rolk_${message.guild.id}`)
        const sa = new Discord.MessageEmbed()
-    .setDescription(`Kanal Koruma Başarıyla Kapatıldı!`)
+    .setDescription(`Rol Koruma Başarıyla Kapatıldı!`)
     .setTimestamp()
     return message.channel.send(sa)
   }
