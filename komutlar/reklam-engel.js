@@ -9,21 +9,21 @@ let prefix = ayarlar.prefix
   
   if (!args[0]) {
     const sa = new Discord.MessageEmbed()
-    .setDescription(`Bunu mu Arıyorsun? ${prefix}kanal-koruma aç/kapat`)
+    .setDescription(`Bunu mu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
     .setTimestamp()
     return message.channel.send(sa)
   }
   if (args[0] === 'aç') {
     
-    db.set(`kanalk_${message.guild.id}`, "Aktif")
+    db.set(`reklam_${message.guild.id}`, "Aktif")
        const sa = new Discord.MessageEmbed()
-    .setDescription(`Kanal Koruma Başarıyla Açıldı!`)
+    .setDescription(`Reklam Engel Başarıyla Açıldı!`)
     .setTimestamp()
     return message.channel.send(sa)
   }
    if (args[0] === 'kapat') {
     
-    db.delete(`kanalk_${message.guild.id}`)
+    db.delete(`reklam_${message.guild.id}`)
        const sa = new Discord.MessageEmbed()
     .setDescription(`Reklam Engel Başarıyla Kapatıldı!`)
     .setTimestamp()
