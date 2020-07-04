@@ -209,9 +209,10 @@ client.on("roleDelete", async(role , channel , message , guild) => {
 //reklam
 client.on("message", async message => {
   
-  const lus = await db.fetch(`reklamk_${message.guild.id}`)
+  const lus = await db.fetch(`reklamkick_${message.guild.id}`)
   let sayı = await db.fetch(`sayı_${message.author.id}`)
-  yazan = message.author
+  let yazan = message.author
+  let guild = message.guild
   if (lus) {
     const reklamengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
     if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
@@ -219,28 +220,34 @@ client.on("message", async message => {
         if (!message.member.permissions.has('KICK_MEMBERS')) {
           message.delete();
           
-     
-          
-        }
-      } catch(err) {
-        console.log(err);
-    }
-  }
-}
-if (!lus) return;
-});
-client.on("messageUpdate", async message => {
-  
-  const lus = await db.fetch(`reklam_${message.guild.id}`)
-  if (lus) {
-    const reklamengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
-    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
-      try {
-        if (!message.member.permissions.has('KICK_MEMBERS')) {
-          message.delete();
-          
-          return message.reply('Hey Dur! Bu Sunucuda Reklamı Engelliyorum').then(message => message.delete(3000));
-          
+     if (sayı > 0) {
+                   db.add(`sayı_${message.author.id}`, 1)
+
+       message.delete()
+       const sa2 = new Discord.MessageEmbed()
+    .setDescription(`<@${message.author.id}> Dostum Bu İlk Uyarın Lütfen Bidaha Tekrarlama \n 1/3`)
+    .setTimestamp()
+       return message.channel.send(sa2)
+     }
+          if (sayı > 1) {
+                        db.add(`sayı_${message.author.id}`, 1)
+
+            message.delete()
+              const sa2 = new Discord.MessageEmbed()
+    .setDescription(`<@${message.author.id}> Dostum Bu İkinci Uyarın Lütfen Bidaha Tekrarlama \n 2/3`)
+    .setTimestamp()
+       return message.channel.send(sa2)
+          }
+          if (sayı > 2) {
+            message.delete()
+            db.add(`sayı_${message.author.id}`, 1)
+              const sa2 = new Discord.MessageEmbed()
+    .setDescription(`<@${message.author.id}> Dostum Reklamdan Dolayu Kicklendin! \n 3/3`)
+    .setTimestamp()
+       return message.channel.send(sa2)
+          }
+          yazan.send(`Reklamdan Dolayı Kicklendin!`)
+          guild.members.kick(yazan)
         }
       } catch(err) {
         console.log(err);
