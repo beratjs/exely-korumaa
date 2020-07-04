@@ -206,54 +206,35 @@ client.on("roleDelete", async(role , channel , message , guild) => {
       
     }
 })  
-//reklam
-client.on("message", async message => {
-  
-  const lus = await db.fetch(`reklamkick_${message.guild.id}`)
-  let sayı = await db.fetch(`sayı_${message.author.id}`)
-  let yazan = message.author
-  let guild = message.guild
-  if (lus) {
-    const reklamengel = ["discord.app", "discord.gg", ".party", ".com", ".az", ".net", ".io", ".gg", ".me", "https", "http", ".com.tr", ".org", ".tr", ".gl", "glicht.me/", ".rf.gd", ".biz", "www.", "www"];
-    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
-      try {
-        if (!message.member.permissions.has('KICK_MEMBERS')) {
-          message.delete();
-          
-     if (sayı > 0) {
-                   db.add(`sayı_${message.author.id}`, 1)
 
-       message.delete()
-       const sa2 = new Discord.MessageEmbed()
-    .setDescription(`<@${message.author.id}> Dostum Bu İlk Uyarın Lütfen Bidaha Tekrarlama \n 1/3`)
-    .setTimestamp()
-       return message.channel.send(sa2)
-     }
-          if (sayı > 1) {
-                        db.add(`sayı_${message.author.id}`, 1)
 
-            message.delete()
-              const sa2 = new Discord.MessageEmbed()
-    .setDescription(`<@${message.author.id}> Dostum Bu İkinci Uyarın Lütfen Bidaha Tekrarlama \n 2/3`)
-    .setTimestamp()
-       return message.channel.send(sa2)
-            yazan.send(` Dostum Bu İkinci Uyarın Lütfen Bidaha Tekrarlama \n 2/3`)
-          }
-          if (sayı > 2) {
-            message.delete()
-            db.add(`sayı_${message.author.id}`, 1)
-              const sa2 = new Discord.MessageEmbed()
-    .setDescription(`<@${message.author.id}> Dostum Reklamdan Dolayu Kicklendin! \n 3/3`)
-    .setTimestamp()
-       return message.channel.send(sa2)
-          }
-          yazan.send(`Reklamdan Dolayı Kicklendin!`)
-         guild.members(yazan).kick()
-        }
-      } catch(err) {
-        console.log(err);
-    }
-  }
-}
-if (!lus) return;
+
+
+///spamke
+const antispam = require("discord-anti-spam-tr");
+antispam(client, {
+  uyarmaSınırı: 1, //Uyarılmadan önce aralıkta gönderilmesine izin verilen maksimum mesaj miktarı.
+  banlamaSınırı: 1, //Yasaklanmadan önce aralıkta gönderilmesine izin verilen maksimum ileti miktar.
+  aralık: 1000, // ms kullanıcılarda zaman miktarı, yasaklanmadan önce aralık değişkeninin maksimumunu gönderebilir.
+  uyarmaMesajı: "Spamı Durdur Yoksa Mutelerim.", // Uyarı mesajı, kullanıcıya hızlı gideceklerini belirten kullanıcıya gönderilir..
+  rolMesajı: "Spam için yasaklandı, başka biri var mı?", //Yasak mesaj, yasaklanmış kullanıcıyı ,Banlar
+  maxSpamUyarı: 7,//Bir kullanıcının uyarılmadan önce bir zaman dilimi içinde gönderebileceği maksimum kopya sayısı
+  maxSpamBan: 10, //Bir kullanıcının yasaklanmadan önce bir zaman diliminde gönderebildiği maksimum kopya sayısı
+  zaman: 10, // Spamdan sonraki zaman
+  rolİsimi: "new role " // Spam Atan Kullanıcılar Verilecek Röl
 });
+
+
+//_____________________________
+
+// bot koruması
+client.on('guildMemberAdd ', async member => {
+  let guild = member.guild
+  if (member.bot) {
+    guild.members.ban(member)
+  }
+})
+
+
+
+

@@ -2,6 +2,7 @@ dependencies:
   chalk: 4.0.0
   common-tags: 1.8.0
   crypto: 1.0.1
+  discord-anti-spam-tr: 0.7.4
   discord.js: 12.2.0
   express: 4.17.1
   ffmpeg: 0.0.4
@@ -747,6 +748,10 @@ packages:
     hasBin: true
     resolution:
       integrity: sha1-+hN8S9aY7fVc1c0CrFWfkaTEups=
+  /discord-anti-spam-tr/0.7.4:
+    dev: false
+    resolution:
+      integrity: sha512-LSk5KjdP0FVWH1Usx5tABMEYTsWivWeR/WxUklEKaPYNXKgbytMbwEd2T6ZB5fJEGwzMZedz4SccIGWUJNWJnw==
   /discord.js/12.2.0:
     dependencies:
       '@discordjs/collection': 0.1.5
@@ -2018,6 +2023,7 @@ specifiers:
   chalk: ^4.0.0
   common-tags: ^1.8.0
   crypto: ^1.0.1
+  discord-anti-spam-tr: ^0.7.4
   discord.js: ^12.2.0
   express: ^4.17.1
   ffmpeg: ^0.0.4
