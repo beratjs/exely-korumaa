@@ -227,14 +227,22 @@ antispam(client, {
 
 //_____________________________
 
-// bot koruması
-client.on('guildMemberAdd ', async member => {
-  let guild = member.guild
-  if (member.bot) {
-    guild.members.ban(member)
-  }
-})
 
+client.on('guildMemberAdd', (member) => {
+    const guild = member.guild;
+
+
+
+    if(member.user.bot === true){
+
+    } 
+    else {
+//hey wha 
+      guild.members.ban(member)
+  }  
+  });
+
+//dxdxdxdxdxd xd
 
 
 
