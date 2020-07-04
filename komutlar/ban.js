@@ -4,16 +4,16 @@ exports.run = async(client, message, args ) => {
   
 let banlanıcak = message.mentions.users.first()
 let banlimit = await db.fetch(`banlimit_${message.guild.id}`)
- let bansayı= await db.fetch(`bansayı_${message.guild.id}`, 1)
-
+ let bansayı= await db.fetch(`bansayı_${message.author.id}`)
+let guild = message.guild
 if (!banlanıcak) return message.channel.send(`Kişi Seç!`)
-  if (bansayı > banlimit) return message.channel.send(`b`)
+  if (bansayı > banlimit) return message.channel.send(`Ban Sayın Limiti Geçtiği İçin Daha Fazla Banlayamazssın Üzgünüm!`)
   
   let sebep = args.slice(1).join(' ')
   if (!sebep) return message.channel.send('Sebep Belirt')
   
-  
-
+  message.channel.send(`Kullanıcı Başarıyla Banlandı`)
+guild.members.ban(banlanıcak)
   db.add(`bansayı_${message.author.id}`, 1)
   let kanal = await db.fetch(`banlog_${message.guild.id}`)
   if (kanal) {
