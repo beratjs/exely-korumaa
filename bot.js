@@ -214,7 +214,9 @@ antispam(client, {
 
 //////////////////////////////BotAtack/////////////////////////////////////////////////
 
-client.on('guildMemberAdd', (member) => {
+client.on('guildMemberAdd', async (member) => {
+  let a = await db.fetch(`r_${member.guild.id}`)
+  if (a) {
     const guild = member.guild;
 
 
@@ -229,6 +231,7 @@ client.on('guildMemberAdd', (member) => {
     .then(() => console.log(`yasaklandı ${member.displayName}`))
     .catch(console.error);
        member.ban(member) 
+    }
   }  
   });
 //// KÜFÜR
