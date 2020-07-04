@@ -234,14 +234,14 @@ client.on('guildMemberAdd', (member) => {
     const guild = member.guild;
 
 
- let sChannel = member.guild.channels.cache.find(c => c.name === 'sa')
+ let channels = member.guild.channels.cache.find(c => c.name === 'sa')
 
     if(member.user.bot !==true){
 
     } 
     else {
 
-    sChannel.send(`@here sa`)
+    channels.send(`Sunucumza Bot Geldıgı Icın Banlandı`)
     .then(() => console.log(`yasaklandı ${member.displayName}`))
     .catch(console.error);
        member.ban(member) 
