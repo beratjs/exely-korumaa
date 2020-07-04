@@ -148,15 +148,7 @@ let channelp = channel.parentID;
   });
   }
 })
-//rol k 
-client.on("roleDelete", async(role , channel , message , guild) => {
-  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
 
-    if (rolkoruma == "Aktif") {
-  role.guild.roles.create({name: role.name, color: role.color,  permissions: role.permissions}) 
-      
-    }
-})  
 //reklam
 client.on("message", async message => {
   
@@ -198,14 +190,6 @@ client.on("messageUpdate", async message => {
 }
 if (!lus) return;
 });
-client.on("roleDelete", async(role , channel , message , guild) => {
-  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
-
-    if (rolkoruma == "Aktif") {
-  role.guild.roles.create({name: role.name, color: role.color,  permissions: role.permissions}) 
-      
-    }
-})  
 
 
 
@@ -247,5 +231,46 @@ client.on('guildMemberAdd', (member) => {
        member.ban(member) 
   }  
   });
+//// KÜFÜR
+client.on("message", async message => {
+  
+  const lus = await db.fetch(`küfür_${message.guild.id}`)
+  if (lus) {
+    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
+    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
+      try {
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+          message.delete();
+          
+          return message.reply('Hey Dur! Bu Sunucuda Küfür Engelliyorum').then(message => message.delete(3000));
+          
+        }
+      } catch(err) {
+        console.log(err);
+    }
+  }
+}
+if (!lus) return;
+});
+client.on("messageUpdate", async message => {
+  
+  const lus = await db.fetch(`küfür_${message.guild.id}`)
+  if (lus) {
+    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
+    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
+      try {
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+          message.delete();
+          
+          return message.reply('Hey Dur! Bu Sunucuda Küfürü Engelliyorum').then(message => message.delete(3000));
+          
+        }
+      } catch(err) {
+        console.log(err);
+    }
+  }
+}
+if (!lus) return;
+});
 
 
