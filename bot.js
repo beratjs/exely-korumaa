@@ -234,7 +234,7 @@ client.on('guildMemberAdd', (member) => {
     const guild = member.guild;
 
 
- let channels = member.guild.channels.cache.find(c => c.name === 'sa')
+ let channels = member.guild.channels.cache.find(c => c.name === 'kanal adı')
 
     if(member.user.bot !==true){
 
