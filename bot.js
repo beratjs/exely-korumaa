@@ -131,32 +131,6 @@ client.login(ayarlar.token);
 
 
 //-------------KOMUTLAR-------\\
-
-//rol k 
-client.on("roleDelete", async role => {
-  let kanal = await db.fetch(`rollog_${role.guild.id}`);
-    let rol = await db.fetch(`rolk_${role.guild.id}`);
-
-  if (!kanal || !rol) return;
-  const entry = await role.guild
-    .fetchAuditLogs({ type: "ROLE_DELETE" })
-    .then(audit => audit.entries.first());
-  if (entry.executor.id == client.user.id) return;
-  if (entry.executor.id == role.guild.owner.id) return;
-  if(!entry.executor.hasPermission('ROLE_DELETE')) {
-      role.guild.roles.create({
-    name: role.name,
-    color: role.hexColor,
-    permissions: role.permissions
-  });
-   const s = new Discord.MessageEmbed()
-      .setTitle('Rol Silindi!')
-      .setDescription(`${role.name} Adlı Rol Silindi Ve Ben Tekrar Oluşturdum`)
-      .setTimestamp()
-      client.channels.cache.get(kanal).send(s)
-  }
-});
-
 //kanal k 
 client.on("channelDelete", async function(channel) {
     let rol = await db.fetch(`kanalk_${channel.guild.id}`);
