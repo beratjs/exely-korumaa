@@ -131,13 +131,17 @@ client.login(ayarlar.token);
 
 
 //-------------KOMUTLAR-------\\
-client.on("roleDelete", async (role, guild) => {
+client.on("roleDelete", async role  => {
   let a =  await db.fetch(`rolk_${role.guild.id}`)
   let a2 = await db.fetch(`rollog_${role.guild.id}`)
   
   if (a) {
-  guild.roles.create(role.name,role.hexColor,role.permissions)
-  } else {
+ role.guild.roles.create({
+    name: role.name,
+    color: role.hexColor,
+    permissions: role.permissions
+  });
+   } else {
     if (a2) {
       const s = new Discord.MessageEmbed()
       .setTitle('Rol Silindi!')
