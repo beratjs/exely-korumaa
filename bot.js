@@ -148,3 +148,20 @@ let channelp = channel.parentID;
   });
   }
 })
+//rol k 
+client.on("roleDelete", async(role , channel , message , guild) => {
+  let rolkoruma = await db.fetch(`rolk_${role.guild.id}`);
+    let rol2 = await db.fetch(`rollog_${role.guild.id}`);
+
+    if (rolkoruma == "acik") {
+  role.guild.createRole({name: role.name, color: role.color,  permissions: role.permissions}) 
+      
+  
+}
+  if (rol2) {
+const sa2 = new Discord.MessageEmbed()
+    .setDescription(`${role.name} Adlı Rol Silindi Ve `)
+    .setTimestamp()
+client.channels.cache.get(rol2).send(sa2)
+  }
+})  
