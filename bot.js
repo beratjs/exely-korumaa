@@ -333,4 +333,36 @@ client.on("messageDelete", async message => {
     client.channels.cache.get(a).send(sa)
   }
 })
-
+client.on("channelDelete", async channel => {
+  let a = await db.fetch(`modlog_${channel.guild.id}`)
+  if (a) {
+    const sa = new Discord.MessageEmbed()
+    .setTitle('Kanal Silindi')
+    .setDescription(`**${channel.name}** Adlı Kanal Silindi!`)
+    .setTimestamp()
+    client.channels.cache.get(a).send(sa)
+  }
+})
+client.on("channelCreate", async channel => {
+  let a = await db.fetch(`modlog_${channel.guild.id}`)
+  if (a) {
+    const sa = new Discord.MessageEmbed()
+    .setTitle('Kanal Oluşturuldı')
+    .setDescription(`**${channel.name}** Adlı Kanal Oluşturuldu!`)
+    .setTimestamp()
+    client.channels.cache.get(a).send(sa)
+  }
+})
+client.on(`userUpdate`, async (oldUser, newUser) => {
+   let a = await db.fetch(`modlog_${oldUser.guild.id}`)
+  if (a) {
+    let kişi = client.users.get(oldUser.id)
+let kişi2 = client.users.get(newUser.id)
+  let avatar = kişi.avatarURL
+const sa = new Discord.MessageEmbed()
+    .setTitle('Profil Değiştirildi')
+    .setDescription(`Eskisi : [tıkla](${kişi.avatarURL})! \n Yenisi : [tıkla](${kişi2.avatarURL})!`)
+    .setTimestamp()
+    client.channels.cache.get(a).send(sa)
+  }
+})
