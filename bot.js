@@ -226,7 +226,8 @@ let a = message.author
             message.delete()
             a.send(`${message.guild.name} Sunucusundan Reklam Yaptığın İçin Kicklendin!`)
                 db.delete(`sayı_${message.author.id}`)
-message.guild.members(a).kick()      
+message.guild.members(a).kick()
+              return
             }
           
         }
