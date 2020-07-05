@@ -353,16 +353,3 @@ client.on("channelCreate", async channel => {
     client.channels.cache.get(a).send(sa)
   }
 })
-client.on(`userUpdate`, async (oldUser, newUser) => {
-   let a = await db.fetch(`modlog_${oldUser.guild.id}`)
-  if (a) {
-    let kişi = client.users.cache.get(oldUser.id)
-  let avatar = kişi.avatarURL()
-const sa = new Discord.MessageEmbed()
-    .setTitle('Profil Değiştirildi')
-    .setDescription(`Eskisi : [tıkla](${kişi.avatarURL()})!`)
-.setThumbnail(avatar)
-    .setTimestamp()
-    client.channels.cache.get(a).send(sa)
-  }
-})
