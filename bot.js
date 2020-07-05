@@ -347,7 +347,7 @@ client.on("channelCreate", async channel => {
   let a = await db.fetch(`modlog_${channel.guild.id}`)
   if (a) {
     const sa = new Discord.MessageEmbed()
-    .setTitle('Kanal Oluşturuldı')
+    .setTitle('Kanal Oluşturuldu')
     .setDescription(`**${channel.name}** Adlı Kanal Oluşturuldu!`)
     .setTimestamp()
     client.channels.cache.get(a).send(sa)
