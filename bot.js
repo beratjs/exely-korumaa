@@ -323,8 +323,45 @@ client.on("messageUpdate", async message => {
 if (!lus) return;
 });
 //modlog 
-client.on("messageDelete", async message => {
-  let a = await db.fetch(`modlog_${message.guild.id}`)
+v  let a = await db.fetch(const Discord = require('discord.js')
+const db = require('quick.db')
+const ayarlar = require('../ayarlar.json')
+ 
+exports.run = async(client, message, args) => {
+
+let prefix = ayarlar.prefix
+  
+  
+  if (!args[0]) {
+    const sa = new Discord.MessageEmbed()
+    .setDescription(`Bunu mu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
+  if (args[0] === 'aç') {
+    
+    db.set(`reklam_${message.guild.id}`, "Aktif")
+       const sa = new Discord.MessageEmbed()
+    .setDescription(`Reklam Engel Başarıyla Açıldı!`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
+   if (args[0] === 'kapat') {
+    
+    db.delete(`reklam_${message.guild.id}`)
+       const sa = new Discord.MessageEmbed()
+    .setDescription(`Reklam Engel Başarıyla Kapatıldı!`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
+};
+exports.conf = {
+  aliases: [],
+  permLevel: 0
+};
+exports.help = {
+  name: 'reklam-engel'
+}; modlog_${message.guild.id}`)
   if (a) {
     const sa = new Discord.MessageEmbed()
     .setTitle('Mesaj Silindi')
@@ -349,19 +386,6 @@ client.on("channelCreate", async channel => {
     const sa = new Discord.MessageEmbed()
     .setTitle('Kanal Oluşturuldu')
     .setDescription(`**${channel.name}** Adlı Kanal Oluşturuldu!`)
-    .setTimestamp()
-    client.channels.cache.get(a).send(sa)
-  }
-})
-client.on(`userUpdate`, async (oldUser, newUser) => {
-   let a = await db.fetch(`modlog_${oldUser.guild.id}`)
-  if (a) {
-    let kişi = client.users.cache.get(oldUser.id)
-  let avatar = kişi.avatarURL()
-const sa = new Discord.MessageEmbed()
-    .setTitle('Profil Değiştirildi')
-    .setDescription(`Eskisi : [tıkla](${kişi.avatarURL()})!`)
-.setThumbnail(avatar)
     .setTimestamp()
     client.channels.cache.get(a).send(sa)
   }
