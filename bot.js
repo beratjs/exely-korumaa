@@ -322,5 +322,15 @@ client.on("messageUpdate", async message => {
 }
 if (!lus) return;
 });
-
+//modlog 
+client.on("messageDelete", async message => {
+  let a = await db.fetch(`modlog_${message.guild.id}`)
+  if (a) {
+    const sa = new Discord.MessageEmbed()
+    .setTitle('Mesaj Silindi')
+    .setDescription(` **${message.author.tag}** a ait **${message.content}** adlı mesajı silindi`)
+    .setTimestamp()
+    client.channels.cache.get(a).send(sa)
+  }
+})
 
