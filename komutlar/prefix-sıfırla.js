@@ -5,8 +5,6 @@ exports.run = async (client, message, args) => {
    if(!message.member.permissions.has('ADMINISTRATOR')) return message.channel.send('Bu komutu kullanabilmek için `Yönetici` yetkisine sahip olmalısın')
    
 let prefix = ayarlar.prefix
-let a = await db.fetch(`prefix_${message.guild.id}`)
-if (!a) return message.reply()
     db.delete(`prefix_${message.guild.id}`)
   message.channel.send(`Prefix Tekrar` + prefix + `Oldu!`)
 }

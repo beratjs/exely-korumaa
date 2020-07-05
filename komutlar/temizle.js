@@ -34,9 +34,9 @@ return message.channel.send(sa2)
 exports.conf = {
   
   aliases: [],
-  permLevel: 2
+  permLevel: 0
 };
 
 exports.help = {
-  name: 'temizlew'
+  name: 'temizle'
 };
