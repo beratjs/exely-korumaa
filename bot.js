@@ -211,7 +211,7 @@ let a = message.author
             a.send(`Bu İlk Uyarın Lütfen Tekrarlama`)
             return 
           }
-         if (sayı > 1) {
+         if (sayı === 1) {
                const sa = new Discord.MessageEmbed()
             .setDescription(`Hey! <@${message.author.id}> Bu İkinci Uyarın Lütfen Tekrarlama!`)
             message.channel.send(sa)
