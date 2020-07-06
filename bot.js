@@ -353,3 +353,17 @@ client.on("channelCreate", async channel => {
     client.channels.cache.get(a).send(sa)
   }
 })
+//sa as
+client.on("message", async message => {
+  let a = await db.fetch(`saas_${message.guild.id}`)
+  if (a) {
+      if (message.content.toLowerCase() === "sa") {
+        message.channel.send(
+new Discord.MessageEmbed()
+          .setDescription(`Aleyküm Selam Hoşgeldin!`)
+)
+      }
+  }
+  
+  
+})
