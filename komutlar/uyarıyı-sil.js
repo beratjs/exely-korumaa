@@ -12,11 +12,11 @@ if (!a || !aa) return message.channel.send(`Kişi ve Silinecek Uyarı Miktarı B
 
     if (aa > sa) {
     message.channel.send(`Bu Üyenin Toplam ${sa} Kadar Uyarısı Var. Sizin Silmeye Çalıştığınız Bundan Daha Büyük Olduğu İçin Maalesef İşlem İptal Oldu! :x:`)
-  }
+  } else {
   
-  
+  if (aa < sa)
   a.send(`${message.guild.name} Sunucusunda ${message.author.tag} Adlı Yetkili ${aa} Kadar Uyarını Sildi!`)
-  
+  }
   
   
 

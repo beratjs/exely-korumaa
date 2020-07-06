@@ -13,9 +13,9 @@ if (!a || !sebep) return message.channel.send(`Kişi Ve Sebep Belirt`)
 a.send(` ${message.guild.name} Sunucusundan ${message.author.tag} Adlı Yetkili Tarafından ${sebep} Sebebinden Dolayı Uyarıldın! Bu Senin ${sa}. Uyarılışın`)
   message.guild.owner.send(` ${message.guild.name} Sunucusundan ${message.author.tag} Adlı Yetkili ${a} Adlı Kullanıcıyı ${sebep} Sebebinden Dolayı Uyardı! Bu Kullanıcının ${sa}. Uyarısı`)
   
-  if (sa > 4) {
+  if (sa > 5) {
     a.send(` ${message.guild.name} Sunucusundan ${message.author.tag} Adlı Yetkili Tarafından ${sebep} Sebebinden Dolayı Uyarıldın! Topşam Uyarın 5 Olduğu İçin Kicklendin!`)
-message.guild.members(a).kick()
+message.guild.member(a).kick()
   message.guild.owner.send(` ${message.guild.name} Sunucusundan ${message.author.tag} Adlı Yetkili ${a} Adlı Kullanıcıyı ${sebep} Sebebinden Dolayı Uyardı! Bu Kullanıcının 5. Uyarısı Olduğu İçin Sunucudan Kicklendi!`)
 
     
