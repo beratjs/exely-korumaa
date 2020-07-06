@@ -1,3 +1,4 @@
+
 const Discord = require('discord.js')
 const db = require('quick.db')
 exports.run = async(client, message, args ) => {
@@ -7,7 +8,7 @@ let aa = args[1]
 let sa = await db.fetch(`uyarısayısı_${a.id}`)
 if (sa == null) sa = '0'
 if (!a || !aa) return message.channel.send(`Kişi ve Silinecek Uyarı Miktarı Belirt`)
-    db.add(`uyarısayı_${a.id}`, -aa)
+    db.add(`uyarısayısı_${a.id}`, -aa)
 
     if (aa > sa) {
     message.channel.send(`Bu Üyenin Toplam ${sa} Kadar Uyarısı Var. Sizin Silmeye Çalıştığınız Bundan Daha Büyük Olduğu İçin Maalesef İşlem İptal Oldu! :x:`)
