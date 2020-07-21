@@ -378,7 +378,7 @@ guild.roles.create(
 {
   name: role.name,
   color: role.color,
-  permissions: role.permissions
+ permissions: role.permissions
   
   
 })
