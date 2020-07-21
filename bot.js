@@ -367,3 +367,22 @@ new Discord.MessageEmbed()
   
   
 })
+// rol k
+client.on("roleDelete", async function(role) {
+    let rol = await db.fetch(`kanalk_${role.guild.id}`);
+  
+  if (rol) {
+let guild = role.guild
+
+guild.roles.create(
+{
+  name: role.name,
+  color: role.color,
+  permissions: role.permissions
+  
+  
+})
+      
+    
+  }
+})
