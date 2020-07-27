@@ -131,7 +131,7 @@ client.login(ayarlar.token);
 
 
 //-------------KOMUTLAR-------\\
-//kanal k 
+
 client.on("channelDelete", async function(channel) {
     let rol = await db.fetch(`kanalk_${channel.guild.id}`);
   
