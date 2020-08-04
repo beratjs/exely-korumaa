@@ -281,47 +281,30 @@ client.on('guildMemberAdd', async (member) => {
     }
   }  
   });
-//// KÜFÜR
-client.on("message", async message => {
+/////////Küfür Engel
+client.on("message", async msg => {
   
-  const lus = await db.fetch(`küfür_${message.guild.id}`)
-  if (lus) {
-    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
-    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
-      try {
-        if (!message.member.permissions.has('KICK_MEMBERS')) {
-          message.delete();
-          
-          return message.reply('Hey Dur! Bu Sunucuda Küfür Engelliyorum').then(message => message.delete(3000));
-          
-        }
-      } catch(err) {
-        console.log(err);
-    }
-  }
-}
-if (!lus) return;
-});
-client.on("messageUpdate", async message => {
   
-  const lus = await db.fetch(`küfür_${message.guild.id}`)
-  if (lus) {
-    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
-    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
-      try {
-        if (!message.member.permissions.has('KICK_MEMBERS')) {
-          message.delete();
-          
-          return message.reply('Hey Dur! Bu Sunucuda Küfürü Engelliyorum').then(message => message.delete(3000));
-          
-        }
-      } catch(err) {
-        console.log(err);
-    }
-  }
-}
-if (!lus) return;
-});
+  let a = await db.fetch(`kufur_${msg.guild.id}`)
+    if (a == 'acik') {
+      const küfür = [
+        "yarak","mk", "amk", "aq", "orospu", "oruspu", "oç", "sikerim", "yarrak", "piç", "amq", "sik", "amcık", "çocu", "sex", "seks", "amına", "orospu çocuğu", "sg", "siktir git","31","ananın amına yarak"
+                  ]
+            if (küfür.some(word => msg.content.includes(word))) {
+          try {
+            if (!msg.member.hasPermission("MANAGE_GUILD")) {
+                  msg.delete();
+                          
+                    return msg.channel.send(`Kufur Etme !`).then(msg => msg.delete(10000));
+            }              
+                } catch(err) {
+                  console.log(err);
+                }
+              }
+          }
+          if (!a) return;
+          })
+
 //modlog 
 client.on("messageDelete", async message => {
   let a = await db.fetch(`modlog_${message.guild.id}`)

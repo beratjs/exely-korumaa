@@ -1,39 +1,32 @@
-const Discord = require('discord.js')
-const db = require('quick.db')
-const ayarlar = require('../ayarlar.json')
- 
-exports.run = async(client, message, args) => {
+const Discord = require('discord.js');
+const db = require('quick.db');
 
-let prefix = ayarlar.prefix
+exports.run = async (client, message, args) => {
+      if (!message.member.hasPermission('ADMINISTRATOR'))
+        return message.channel.send(" Yetersiz **yetki!**")
   
-  
-  if (!args[0]) {
-    const sa = new Discord.MessageEmbed()
-    .setDescription(`Bunu mu Arıyorsun? ${prefix}küfür-engel aç/kapat`)
-    .setTimestamp()
-    return message.channel.send(sa)
+  if (!args[0]){
+    message.channel.send('Kufur-engel kapat/aç Yazmalısın')
   }
-  if (args[0] === 'aç') {
+  if (args[0] === 'aç'){
+    message.channel.send("Kufur Engel Aktıf")
     
-    db.set(`küfür_${message.guild.id}`, "Aktif")
-       const sa = new Discord.MessageEmbed()
-    .setDescription(`Küfür Engel Başarıyla Açıldı!`)
-    .setTimestamp()
-    return message.channel.send(sa)
+    db.set(`kufur_${message.guild.id}`, "acik")
   }
-   if (args[0] === 'kapat') {
+  if (args[0] === 'kapat'){
+    message.channel.send('Kufur Engel Başarıyla Kapatıldı')
     
-    db.delete(`küfür_${message.guild.id}`)
-       const sa = new Discord.MessageEmbed()
-    .setDescription(`Küfür Engel Başarıyla Kapatıldı!`)
-    .setTimestamp()
-    return message.channel.send(sa)
+    db.set(`kufur_${message.guild.id}`, "kapali")
   }
-};
+}
 exports.conf = {
+  enabled: true,
+  guildOnly: false,
   aliases: [],
   permLevel: 0
-};
+}
 exports.help = {
-  name: 'küfür-engel'
-}; 
+  name: "küfür-engel",
+  description: "Küfür engel açar yada kapatır.",
+  usage: "küfür"
+}
