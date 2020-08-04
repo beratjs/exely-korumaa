@@ -367,22 +367,21 @@ new Discord.MessageEmbed()
   
   
 })
-// rol k
-client.on("roleDelete", async function(role) {
-    let rol = await db.fetch(`kanalk_${role.guild.id}`);
-  
-  if (rol) {
-let guild = role.guild
-
-guild.roles.create(
-{
-  name: role.name,
-  color: role.color,
- permissions: role.permissions
-  
-  
+/////Rol Koruma
+client.on("roleDelete", async role => {
+         const entry = await role.guild.fetchAuditLogs({ type: "ROLE_DELETE" }).then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+  role.guild.roles.create({ data: {
+          name: role.name,
+          color: role.color,
+          hoist: role.hoist,
+          permissions: role.permissions,
+          mentionable: role.mentionable,
+          position: role.position
+}, reason: 'Silinen Rol Açıldı.'})
 })
-      
-    
-  }
-})
+client.on("roleCreate", async role => {
+       const entry = await role.guild.fetchAuditLogs({ type: "ROLE_CREATE" }).then(audit => audit.entries.first());
+    if (entry.executor.id == client.user.id) return;
+  role.delete()
+}) 

@@ -28,7 +28,7 @@ let prefix = ayarlar.prefix
     .setDescription(`Sa As Başarıyla Kapatıldı!`)
     .setTimestamp()
     return message.channel.send(sa)
-  }
+}
 };
 exports.conf = {
   aliases: [],
