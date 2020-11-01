@@ -8,7 +8,7 @@ var prefix= ayarlar.prefix;
 module.exports = client => {
   console.log(`${client.guilds.size} Kadar Sunucuya Hizmet Veriyorum!`);
   client.user.setStatus("idle");
-    client.user.setActivity("Guard Bot  Altyapı", { type: "WATCHING" });
+    client.user.setActivity("Kobs Guard Bot  Altyapı", { type: "WATCHING" });
   
 
   
