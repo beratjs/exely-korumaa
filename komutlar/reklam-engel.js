@@ -1,39 +1,34 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
+const settings = require('../ayarlar.json')
 const db = require('quick.db')
-const ayarlar = require('../ayarlar.json')
- 
-exports.run = async(client, message, args) => {
-
-let prefix = ayarlar.prefix
-  
-  
-  if (!args[0]) {
-    const sa = new Discord.MessageEmbed()
-    .setDescription(`Bunu mu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
-    .setTimestamp()
-    return message.channel.send(sa)
-  }
-  if (args[0] === 'aç') {
-    
-    db.set(`reklam_${message.guild.id}`, "Aktif")
-       const sa = new Discord.MessageEmbed()
-    .setDescription(`Reklam Engel Başarıyla Açıldı!`)
-    .setTimestamp()
-    return message.channel.send(sa)
-  }
-   if (args[0] === 'kapat') {
-    
-    db.delete(`reklam_${message.guild.id}`)
-       const sa = new Discord.MessageEmbed()
-    .setDescription(`Reklam Engel Başarıyla Kapatıldı!`)
-    .setTimestamp()
-    return message.channel.send(sa)
-  }
-};
-exports.conf = {
+exports.confing = {
+  name: "reklam-engel",
   aliases: [],
-  permLevel: 0
+  description: "Sunucuda Reklam Yapılmasını Engeller.",
+  usage: `${settings.bot.prefix}reklam-engel aç/kapat`
 };
-exports.help = {
-  name: 'reklam-engel'
-}; 
+
+
+exports.run = async (bot, message, args) => {
+
+    if (!message.member.hasPermission('ADMINISTRATOR')){
+    	    return message.channel.send("Bu Komutu Kullanabilmek İçin Yönetici Olmalısın.!")
+    }
+
+    if (!args[0]) return message.reply(`Doğru Kullanım: **${this.confing.usage}**`);
+
+    if (args[0] == 'aç') {
+        var durum = await db.fetch(`sunucu.${message.guild.id}.reklamengel`)            
+        if (durum == "açık") return message.channel.send("Reklam Engel Sistemi Zaten Açık!");
+        db.set(`sunucu.${message.guild.id}.reklamengel`, 'açık')
+        message.channel.send(`Reklam Engel Sistemini Başarıyla Açtım!`)
+    }
+
+    if (args[0] == 'kapat') {
+        var durum = await db.fetch(`sunucu.${message.guild.id}.reklamengel`)            
+        if (durum == "kapalı") return message.channel.send("Reklam Engel Sistemi Zaten Kapalı!");
+        db.delete(`sunucu.${message.guild.id}.reklamengel`)
+        message.channel.send(`Reklam Engel Sistemini Başarıyla Kapattım!`)
+    }
+
+}
