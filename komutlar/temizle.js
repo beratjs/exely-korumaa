@@ -1,5 +1,6 @@
 const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");const settings = require('../ayarlar.json')
+const db = require("quick.db");
+const settings = require('../ayarlar.json')
 
 exports.confing = {
   name: "sil",

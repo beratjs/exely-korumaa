@@ -1,5 +1,5 @@
 const { MessageEmbed } = require("discord.js");
-const settings  =  require('../../settings.json')
+const settings = require('../ayarlar.json')
 
 exports.confing = {
    name: "çek",

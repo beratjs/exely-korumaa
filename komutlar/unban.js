@@ -1,7 +1,7 @@
 //757554152791343146
 const Discord = require('discord.js');
 const db = require("quick.db");
-const settings  =  require('../../settings.json')
+const settings = require('../ayarlar.json')
 const moment = require('moment')
 exports.confing = {
   name: "unban",

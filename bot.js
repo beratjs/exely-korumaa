@@ -37,10 +37,10 @@ fs.readdir('./komutlar/', (err, files) => {
     log(`${files.length} komut yüklenecek.`);
     files.forEach(f => {
         let props = require(`./komutlar/${f}`);
-        log(`Yüklenen komut: ${props.help.name}.`);
-        client.commands.set(props.help.name, props);
-        props.conf.aliases.forEach(alias => {
-            client.aliases.set(alias, props.help.name);
+        log(`Yüklenen komut: ${props.confing.name}.`);
+        client.commands.set(props.confing.name, props);
+        props.confing.aliases.forEach(alias => {
+            client.aliases.set(alias, props.confing.name);
         });
     });
 });
@@ -59,7 +59,7 @@ client.reload = command => {
             });
             client.commands.set(command, cmd);
             cmd.conf.aliases.forEach(alias => {
-                client.aliases.set(alias, cmd.help.name);
+                client.aliases.set(alias, cmd.confing.name);
             });
             resolve();
         } catch (e) {
@@ -74,7 +74,7 @@ client.load = command => {
             let cmd = require(`./komutlar/${command}`);
             client.commands.set(command, cmd);
             cmd.conf.aliases.forEach(alias => {
-                client.aliases.set(alias, cmd.help.name);
+                client.aliases.set(alias, cmd.confing.name);
             });
             resolve();
         } catch (e) {
@@ -109,7 +109,7 @@ client.elevation = message => {
     let permlvl = 0;
     if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
     if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-    if (message.author.id === ayarlar.sahip) permlvl = 4;
+    if (message.author.id === ayarlar.bot.sahip) permlvl = 4;
     return permlvl;
 };
 
@@ -126,7 +126,7 @@ client.on('error', e => {
     console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
 });
 
-client.login(ayarlar.token);
+client.login(ayarlar.bot.token);
 
 
 

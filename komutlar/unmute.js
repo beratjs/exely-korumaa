@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 const ms = require("ms");
 const db = require('quick.db');
-const settings  =  require('../../settings.json')
+const settings = require('../ayarlar.json')
 
 exports.confing = {
   name: "unvmute",

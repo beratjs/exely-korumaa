@@ -1,7 +1,7 @@
 const { MessageEmbed } = require('discord.js');
 const db = require('quick.db');
 const settings = require('../ayarlar.json')
-
+const cool = new Set()
 
 exports.confing = {
   name: 'abone',
@@ -15,6 +15,9 @@ exports.confing = {
 
 
 exports.run = async (client, message, args) => {
+  
+   
+  
    let ver = settings.roles.abone 
    
  if(message.channel.id !== settings.channels.botkomut) return message.channel.send('Bot komutlarını bu kanalda kullanamazsın kullanıcaksan <#757558688121749545> adlı kanalda kullanabilirsin!').then(message => message.delete(6000));
