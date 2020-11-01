@@ -37,10 +37,10 @@ fs.readdir('./komutlar/', (err, files) => {
     log(`${files.length} komut yüklenecek.`);
     files.forEach(f => {
         let props = require(`./komutlar/${f}`);
-        log(`Yüklenen komut: ${props.confing.name}.`);
-        client.commands.set(props.confing.name, props);
-        props.confing.aliases.forEach(alias => {
-            client.aliases.set(alias, props.confing.name);
+        log(`Yüklenen komut: ${props.help.name}.`);
+        client.commands.set(props.help.name, props);
+        props.conf.aliases.forEach(alias => {
+            client.aliases.set(alias, props.help.name);
         });
     });
 });
@@ -59,7 +59,7 @@ client.reload = command => {
             });
             client.commands.set(command, cmd);
             cmd.conf.aliases.forEach(alias => {
-                client.aliases.set(alias, cmd.confing.name);
+                client.aliases.set(alias, cmd.help.name);
             });
             resolve();
         } catch (e) {
@@ -74,7 +74,7 @@ client.load = command => {
             let cmd = require(`./komutlar/${command}`);
             client.commands.set(command, cmd);
             cmd.conf.aliases.forEach(alias => {
-                client.aliases.set(alias, cmd.confing.name);
+                client.aliases.set(alias, cmd.help.name);
             });
             resolve();
         } catch (e) {
@@ -109,7 +109,7 @@ client.elevation = message => {
     let permlvl = 0;
     if (message.member.hasPermission("BAN_MEMBERS")) permlvl = 2;
     if (message.member.hasPermission("ADMINISTRATOR")) permlvl = 3;
-    if (message.author.id === ayarlar.bot.sahip) permlvl = 4;
+    if (message.author.id === ayarlar.sahip) permlvl = 4;
     return permlvl;
 };
 
@@ -126,7 +126,7 @@ client.on('error', e => {
     console.log(chalk.bgRed(e.replace(regToken, 'that was redacted')));
 });
 
-client.login(ayarlar.bot.token);
+client.login(ayarlar.token);
 
 
 
@@ -281,30 +281,47 @@ client.on('guildMemberAdd', async (member) => {
     }
   }  
   });
-/////////Küfür Engel
-client.on("message", async msg => {
+//// KÜFÜR
+client.on("message", async message => {
   
+  const lus = await db.fetch(`küfür_${message.guild.id}`)
+  if (lus) {
+    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
+    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
+      try {
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+          message.delete();
+          
+          return message.reply('Hey Dur! Bu Sunucuda Küfür Engelliyorum').then(message => message.delete(3000));
+          
+        }
+      } catch(err) {
+        console.log(err);
+    }
+  }
+}
+if (!lus) return;
+});
+client.on("messageUpdate", async message => {
   
-  let a = await db.fetch(`kufur_${msg.guild.id}`)
-    if (a == 'acik') {
-      const küfür = [
-        "yarak","mk", "amk", "aq", "orospu", "oruspu", "oç", "sikerim", "yarrak", "piç", "amq", "sik", "amcık", "çocu", "sex", "seks", "amına", "orospu çocuğu", "sg", "siktir git","31","ananın amına yarak"
-                  ]
-            if (küfür.some(word => msg.content.includes(word))) {
-          try {
-            if (!msg.member.hasPermission("MANAGE_GUILD")) {
-                  msg.delete();
-                          
-                    return msg.channel.send(`Kufur Etme !`).then(msg => msg.delete(10000));
-            }              
-                } catch(err) {
-                  console.log(err);
-                }
-              }
-          }
-          if (!a) return;
-          })
-
+  const lus = await db.fetch(`küfür_${message.guild.id}`)
+  if (lus) {
+    const reklamengel = ["amk", "oç", "orrrrrrrrrrr"];
+    if (reklamengel.some(word => message.content.toLowerCase().includes(word))) {
+      try {
+        if (!message.member.permissions.has('KICK_MEMBERS')) {
+          message.delete();
+          
+          return message.reply('Hey Dur! Bu Sunucuda Küfürü Engelliyorum').then(message => message.delete(3000));
+          
+        }
+      } catch(err) {
+        console.log(err);
+    }
+  }
+}
+if (!lus) return;
+});
 //modlog 
 client.on("messageDelete", async message => {
   let a = await db.fetch(`modlog_${message.guild.id}`)

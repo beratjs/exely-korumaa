@@ -4,7 +4,7 @@ const db = require("quick.db");
 
 module.exports = async message => {
   let client = message.client;
-  let prefix = db.fetch(`prefix_${message.guild.id}`) || ayarlar.bot.prefix
+  let prefix = db.fetch(`prefix_${message.guild.id}`) || ayarlar.prefix
   if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
   let command = message.content.split(" ")[0].slice(prefix.length);
@@ -19,7 +19,7 @@ module.exports = async message => {
   if (cmd) {
     let karaliste = await db.fetch(`kullanicikaraliste_${message.author.id}`);
     if (karaliste) return;
-    if (perms < cmd.confing.permLevel) return;
+    if (perms < cmd.conf.permLevel) return;
     cmd.run(client, message, params, perms);
   }
 };

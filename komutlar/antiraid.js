@@ -9,23 +9,23 @@ let prefix = ayarlar.prefix
   
   if (!args[0]) {
     const sa = new Discord.MessageEmbed()
-    .setDescription(`Bunu mu Arıyorsun? ${prefix}reklam-engel aç/kapat`)
+    .setDescription(`Bunu mu Arıyorsun? ${prefix}anti-raid aç/kapat`)
     .setTimestamp()
     return message.channel.send(sa)
   }
   if (args[0] === 'aç') {
     
-    db.set(`reklam_${message.guild.id}`, "Aktif")
+    db.set(`r_${message.guild.id}`, "Aktif")
        const sa = new Discord.MessageEmbed()
-    .setDescription(`Reklam Engel Başarıyla Açıldı!`)
+    .setDescription(`Anti Raid Başarıyla Açıldı! \n Artık Gelen Botlar Banlanacak!`)
     .setTimestamp()
     return message.channel.send(sa)
   }
    if (args[0] === 'kapat') {
     
-    db.delete(`reklam_${message.guild.id}`)
+    db.delete(`r_${message.guild.id}`)
        const sa = new Discord.MessageEmbed()
-    .setDescription(`Reklam Engel Başarıyla Kapatıldı!`)
+    .setDescription(`Anti Raid Başarıyla Kapatıldı!`)
     .setTimestamp()
     return message.channel.send(sa)
   }
@@ -35,5 +35,5 @@ exports.conf = {
   permLevel: 0
 };
 exports.help = {
-  name: 'reklam-engel'
+  name: 'anti-raid'
 }; 

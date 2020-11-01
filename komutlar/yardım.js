@@ -1,26 +1,45 @@
-const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
-const  settings =  require('../ayarlar.json')
-
-exports.confing = {
-  name: "yardım",
-  aliases: ['help'],
-  description: "Botdaki Komutları Gösterir.",
-  usage: `${settings.bot.prefix}yardım`
-};
-
-
-exports.run = async (client, message, args) => {
+const Discord = require('discord.js');
+const ayarlar = require('../ayarlar.json')
+exports.run = function(client, message) {
   
-  if(!message.member.roles.cache.has(settings.roles.anayetki)) {
-      return message.react(settings.emojis.uyarı)
-    }
-    
-    let help = new MessageEmbed()
-  .setColor("#dd479a")
-  .setAuthor(`${message.author.username}`,message.author.avatarURL({dynamic:true}))
-  .setDescription(` \`${client.commands.map(a => a.confing.usage).join("\n")}\`   `)
-message.channel.send(help)
+  let prefix  = ayarlar.prefix
 
+const yardım = new Discord.MessageEmbed()
+.setColor('GREEN')
+.setAuthor(`Kob's Bot`)
+.setDescription(`
+
+
+:white_small_square: **=**  \`!kanal-koruma\` : **Kanal Koruma Aç/Kapat**
+:white_small_square: **=**  \`!küfür-engel\`:  **Küfür Engel Aç/Kapat**
+:white_small_square: **=**  \`!reklam-engel\` :  **Reklam Engel Aç/Kapat**
+:white_small_square: **=**  \`!sohbet aç-kapat\` :  **Sohbeti Açıp Kapatırsınız**
+:white_small_square: **=**  \`!ban\`: **Belirttiğiniz Kişiyi Sunucudan Banlarsınız**
+:white_small_square: **=**  \`!unban\`:  **Belirttiğiniz Kişinin Banını Kaldırırsınız**
+:white_small_square: **=**  \`!istatistik\`:  **Botun İstatistiklerini Atar**
+:white_small_square: **=**  \`!temizle\`:  **Belirttiğiniz Sayıda Mesajı Siler**
+:white_small_square: **=**  \`!ping\`:  **Pinginizi Ölçüp Atar**
+:white_small_square: **=**  \`!avatar\`:  **Avatarınızı Atar**
+
+`)
+.setImage("https://cdn.discordapp.com/attachments/729334114989375508/731237846173876294/OgunSert_Kobs.png")
+.setThumbnail(message.author.avatarURL())
+message.channel.send(yardım)
+
+  
+   
+  
 };
 
+exports.conf = {
+  enabled: true,
+  guildOnly: false, 
+  aliases: ['help'], 
+  permLevel: 0
+};
+
+exports.help = {
+  name: "yardım",
+  description: 'Bizim yaptığımız bir yardım kodu.',
+  usage: 'yardım'
+};

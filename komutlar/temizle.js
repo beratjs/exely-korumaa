@@ -1,22 +1,42 @@
-const { MessageEmbed } = require("discord.js");
-const db = require("quick.db");
-const settings = require('../ayarlar.json')
+const Discord = require('discord.js');
+const db = require('quick.db');
 
-exports.confing = {
-  name: "sil",
+exports.run = async (client, message, args) => {
+      let silmek = args[0]
+
+   if (!silmek) {
+     const sa = new Discord.MessageEmbed()
+    .setDescription('Rakam Belirt')
+    .setTimestamp()
+return message.channel.send(sa)  
+  }
+  if (isNaN(silmek)) {
+ const sa3 = new Discord.MessageEmbed()
+    .setDescription('Silme Değeri Sadece Rakamlardan Oluşabilir')
+    .setTimestamp()
+return message.channel.send(sa3)  
+  }
+if (silmek > 100) {
+ const sa2 = new Discord.MessageEmbed()
+    .setDescription('100 Den Fazla Silemem')
+    .setTimestamp()
+return message.channel.send(sa2)  
+  }  
+  
+  message.channel.bulkDelete(silmek).then(() =>  {
+   message.channel.send(`${silmek} Kadar Mesaj ${message.author.tag} Tarafından Silindi`)
+
+  })
+  
+  
+}
+
+exports.conf = {
+  
   aliases: [],
-  description: "Belirtien Sayı Kadar Mesaj Siler.",
-  usage: `${settings.bot.prefix}sil 1-100`
+  permLevel: 0
 };
 
-
-exports.run = async(client, message, args) => {
-if(!message.member.hasPermission("MANAGE_MESSAGES")){
-	    return message.react(settings.emojis.uyarı)
-}
-if(!args[0]) return message.channel.send("**Lütfen Silinicek Mesaj Miktarını Yazın!**");
-message.channel.bulkDelete(args[0]).then(() => {
-  message.channel.send(` ${args[0]} Adet Mesajı Sildim. ✅`).then(msg => msg.delete({timeout:5000}));
-})
-}
-
+exports.help = {
+  name: 'temizle'
+};

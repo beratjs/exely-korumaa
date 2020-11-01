@@ -1,34 +1,39 @@
-const Discord = require('discord.js');
-const settings = require('../ayarlar.json')
+const Discord = require('discord.js')
 const db = require('quick.db')
-exports.confing = {
-  name: "kufur-engel",
-  aliases: ['küfür-engel'],
-  description: "Sunucuda Küfür Edilmesini Engeller.",
-  usage: `${settings.bot.prefix}kufur-engel aç/kapat`
+const ayarlar = require('../ayarlar.json')
+ 
+exports.run = async(client, message, args) => {
+
+let prefix = ayarlar.prefix
+  
+  
+  if (!args[0]) {
+    const sa = new Discord.MessageEmbed()
+    .setDescription(`Bunu mu Arıyorsun? ${prefix}küfür-engel aç/kapat`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
+  if (args[0] === 'aç') {
+    
+    db.set(`küfür_${message.guild.id}`, "Aktif")
+       const sa = new Discord.MessageEmbed()
+    .setDescription(`Küfür Engel Başarıyla Açıldı!`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
+   if (args[0] === 'kapat') {
+    
+    db.delete(`küfür_${message.guild.id}`)
+       const sa = new Discord.MessageEmbed()
+    .setDescription(`Küfür Engel Başarıyla Kapatıldı!`)
+    .setTimestamp()
+    return message.channel.send(sa)
+  }
 };
-
-
-exports.run = async (bot, message, args) => {
-
-    if (!message.member.hasPermission('ADMINISTRATOR')){
-    	    return message.channel.send("Bu Komutu Kullanabilmek İçin Yönetici Olmalısın.!")
-    }
-
-    if (!args[0]) return message.reply(`Doğru Kullanım: **${this.confing.usage}**`);
-
-    if (args[0] == 'aç') {
-        var durum = await db.fetch(`sunucu.${message.guild.id}.kufurengel`)            
-        if (durum == "açık") return message.channel.send("Kufur Engel Sistemi Zaten Açık!");
-        db.set(`sunucu.${message.guild.id}.kufurengel`, 'açık')
-        message.channel.send(`Kufur Engel Sistemini Başarıyla Açtım!`)
-    }
-
-    if (args[0] == 'kapat') {
-        var durum = await db.fetch(`sunucu.${message.guild.id}.kufurengel`)            
-        if (durum == "kapalı") return message.channel.send("Kufur Engel Sistemi Zaten Kapalı!");
-        db.delete(`sunucu.${message.guild.id}.kufurengel`)
-        message.channel.send(`Kufur Engel Sistemini Başarıyla Kapattım!`)
-    }
-
-}
+exports.conf = {
+  aliases: [],
+  permLevel: 0
+};
+exports.help = {
+  name: 'küfür-engel'
+}; 
